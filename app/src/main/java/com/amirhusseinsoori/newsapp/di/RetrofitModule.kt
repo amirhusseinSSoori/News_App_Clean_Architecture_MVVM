@@ -18,24 +18,31 @@ import javax.inject.Singleton
 object RetrofitModule {
 
 
+//    @Singleton
+//    @Provides
+//    fun provideRetrofit(): Retrofit.Builder {
+//
+//        return Retrofit.Builder()
+//            .baseUrl(BASE_URL)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .client(
+//                OkHttpClient.Builder()
+//                    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                    .build()
+//            )
+//    }
+
+
     @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit.Builder {
-
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(
-                OkHttpClient.Builder()
-                    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .build()
-            )
-    }
-
-
-    @Singleton
-    @Provides
-    fun provideApiService(retrofit: Retrofit.Builder): NewsAPI {
-        return retrofit.build().create(NewsAPI::class.java)
-    }
+    fun provideRetrofit(): NewsAPI = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(NewsAPI::class.java)
+//    @Singleton
+//    @Provides
+//    fun provideApiService(retrofit: Retrofit.Builder): NewsAPI {
+//        return retrofit.build().create(NewsAPI::class.java)
+//    }
 }

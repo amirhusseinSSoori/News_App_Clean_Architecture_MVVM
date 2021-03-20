@@ -3,62 +3,74 @@ package com.amirhusseinsoori.newsapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.amirhusseinsoori.newsapp.R
 import com.amirhusseinsoori.newsapp.api.response.Article
+import com.amirhusseinsoori.newsapp.databinding.ItemArticlePreviewBinding
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_article_preview.view.*
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
+class NewsAdapter(private val interaction: OnBreakingListener? = null) :
+    PagingDataAdapter<Article, NewsAdapter.BreakingNewsViewHolder>(DIFF_CALLBACK) {
 
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
 
-    private val differCallback = object : DiffUtil.ItemCallback<Article>() {
-        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.url == newItem.url
+            override fun areItemsTheSame(oldItem: Article, newItem: Article) = oldItem.url == newItem.url
+
+            override fun areContentsTheSame(oldItem: Article, newItem: Article) = oldItem == newItem
+
         }
-
-        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem == newItem
-        }
     }
 
-    val differ = AsyncListDiffer(this, differCallback)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
-        return ArticleViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_article_preview,
-                parent,
-                false
-            )
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreakingNewsViewHolder {
+        val binding =
+            ItemArticlePreviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return BreakingNewsViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return differ.currentList.size
+    override fun onBindViewHolder(holder: BreakingNewsViewHolder, position: Int) {
+        val currentItem = getItem(position)
+        if (currentItem != null) holder.bind(currentItem)
     }
 
-    override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        val article = differ.currentList[position]
-        holder.itemView.apply {
-            Glide.with(this).load(article.urlToImage).into(ivArticleImage)
-            tvSource.text = article.source.name
-            tvTitle.text = article.title
-            tvDescription.text = article.description
-            tvPublishedAt.text = article.publishedAt
-            setOnClickListener {
-                onItemClickListener?.let { it(article) }
+    inner class BreakingNewsViewHolder
+    constructor(
+        private val binding: ItemArticlePreviewBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION){
+                    val item = getItem(position)
+                    if (item != null) interaction?.onBreakingItemClick(item)
+                }
             }
         }
+
+        fun bind(item: Article) = binding.apply {
+            Glide.with(root).load(item.urlToImage).into(ivArticleImage)
+            tvSource.text = item.source!!.name
+            tvTitle.text = item.title
+            tvDescription.text = item.description
+            tvPublishedAt.text = item.publishedAt
+        }
     }
 
-    inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private var onItemClickListener: ((Article) -> Unit)? = null
+//    private var onItemClickListener: ((Article) -> Unit)? = null
+//    fun setOnItemClickListener(listener: (Article) -> Unit){
+//        onItemClickListener = listener
+//    }
 
-    fun setOnItemClickListener(listener: (Article) -> Unit) {
-        onItemClickListener = listener
+
+    interface OnBreakingListener {
+        fun onBreakingItemClick(item: Article)
     }
+
+
 }
