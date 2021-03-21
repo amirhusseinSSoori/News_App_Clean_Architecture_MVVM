@@ -2,14 +2,14 @@ package com.amirhusseinsoori.newsapp.source
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.liveData
 import com.amirhusseinsoori.newsapp.api.NewsAPI
-import com.amirhusseinsoori.newsapp.util.BreakingPagingSource
+import com.amirhusseinsoori.newsapp.paging.BreakingPagingSource
+import com.amirhusseinsoori.newsapp.paging.SearchPagingSource
 import javax.inject.Inject
 
 class Remote @Inject constructor(val api: NewsAPI) {
 
-    fun getArticles(countryCode: String) =
+    fun getArticlesNews(countryCode: String) =
         Pager(
             config = PagingConfig(
                 pageSize = 20,
@@ -17,5 +17,16 @@ class Remote @Inject constructor(val api: NewsAPI) {
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { BreakingPagingSource(api, countryCode) }
-        ).liveData
+        ).flow
+
+
+    fun searchArticles(query: String) =
+        Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                maxSize = 100,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { SearchPagingSource(api, query) }
+        ).flow
 }

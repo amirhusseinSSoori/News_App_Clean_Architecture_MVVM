@@ -1,16 +1,21 @@
 package com.amirhusseinsoori.newsapp.di
 
+import com.amirhusseinsoori.newsapp.BuildConfig.DEBUG
 import com.amirhusseinsoori.newsapp.api.NewsAPI
 import com.amirhusseinsoori.newsapp.util.Constants.Companion.BASE_URL
 import com.google.gson.Gson
+import dagger.Lazy
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Call
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -18,31 +23,40 @@ import javax.inject.Singleton
 object RetrofitModule {
 
 
-//    @Singleton
-//    @Provides
-//    fun provideRetrofit(): Retrofit.Builder {
-//
-//        return Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(
-//                OkHttpClient.Builder()
-//                    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-//                    .build()
-//            )
-//    }
+    @Provides
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor{
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = if (DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+        return loggingInterceptor
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttp(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient{
+        return OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .readTimeout(8000 , TimeUnit.SECONDS)
+            .writeTimeout(8000 , TimeUnit.SECONDS)
+            .connectTimeout(1 , TimeUnit.MINUTES)
+            .build()
+    }
 
 
     @Singleton
     @Provides
-    fun provideRetrofit(): NewsAPI = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(NewsAPI::class.java)
-//    @Singleton
-//    @Provides
-//    fun provideApiService(retrofit: Retrofit.Builder): NewsAPI {
-//        return retrofit.build().create(NewsAPI::class.java)
-//    }
+    fun provideRetrofit(client: Lazy<OkHttpClient>): Retrofit{
+        return Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .callFactory { request ->
+                // this bellow fun ,called in background thread
+                client.get().newCall(request)
+            }
+            .build()
+    }
+
+    @Provides
+    fun provideNewsApi(retrofit: Retrofit): NewsAPI{
+        return retrofit.create(NewsAPI::class.java)
+    }
 }

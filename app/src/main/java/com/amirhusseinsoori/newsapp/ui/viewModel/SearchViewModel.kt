@@ -1,6 +1,5 @@
 package com.amirhusseinsoori.newsapp.ui.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -10,14 +9,12 @@ import com.amirhusseinsoori.newsapp.repository.NewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
-
 @HiltViewModel
-class NewsViewModel @Inject constructor( val repository: NewsRepository): ViewModel()  {
+class SearchViewModel @Inject constructor(val repository: NewsRepository):ViewModel(){
 
 
 
-    suspend fun breakingNews(): Flow<PagingData<Article>> {
-         return repository.getBreakingNews("us").cachedIn(viewModelScope)
+    fun searchNews(query:String): Flow<PagingData<Article>> {
+        return repository.searchArticlesNews(query).cachedIn(viewModelScope)
     }
-
 }
