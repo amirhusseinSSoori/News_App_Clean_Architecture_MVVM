@@ -1,30 +1,22 @@
 package com.amirhusseinsoori.newsapp.ui.fragment
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.amirhusseinsoori.common.BaseFragment
-import com.amirhusseinsoori.newsapp.R
 import com.amirhusseinsoori.newsapp.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentSearchNewsBinding
-import com.amirhusseinsoori.newsapp.ui.viewModel.NewsViewModel
 import com.amirhusseinsoori.newsapp.ui.viewModel.SearchViewModel
-import com.amirhusseinsoori.newsapp.util.LoadStateAdapterNews
+import com.amirhusseinsoori.newsapp.paging.LoadStateAdapterNews
 import com.amirhusseinsoori.newsapp.util.onTextChange
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_breaking_news.*
 import kotlinx.android.synthetic.main.fragment_search_news.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
 import java.util.*
 import javax.inject.Inject
 
