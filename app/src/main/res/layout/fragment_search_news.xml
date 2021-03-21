@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingBottom="50dp"
+        android:background="#fff"
         android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
