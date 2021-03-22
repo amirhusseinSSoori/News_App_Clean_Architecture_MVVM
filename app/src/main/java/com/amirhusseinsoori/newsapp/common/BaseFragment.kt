@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.common
+package com.amirhusseinsoori.newsapp.common
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 
 

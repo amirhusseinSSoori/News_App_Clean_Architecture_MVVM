@@ -1,7 +1,7 @@
 package com.amirhusseinsoori.newsapp.repository
 
 import androidx.paging.PagingData
-import com.amirhusseinsoori.domain.repository.SearchNewsRepository
+import com.amirhusseinsoori.newsapp.domain.repository.SearchNewsRepository
 import com.amirhusseinsoori.newsapp.api.response.Article
 import com.amirhusseinsoori.newsapp.source.Remote
 import kotlinx.coroutines.flow.Flow
@@ -15,4 +15,6 @@ class SearchNewsRepositoryImpI @Inject constructor(val remote: Remote):SearchNew
     override suspend fun searchArticlesNews(Search: String): Flow<PagingData<Article>> {
         return remote.searchArticles(Search)
     }
+
+
 }

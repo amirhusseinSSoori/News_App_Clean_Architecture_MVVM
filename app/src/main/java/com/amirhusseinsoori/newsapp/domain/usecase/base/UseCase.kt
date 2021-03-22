@@ -1,6 +1,6 @@
-package com.amirhusseinsoori.domain.usecase.base
+package com.amirhusseinsoori.newsapp.domain.usecase.base
 
-import com.amirhusseinsoori.domain.exception.traceErrorException
+import com.amirhusseinsoori.newsapp.domain.exception.traceErrorException
 import kotlinx.coroutines.*
 import java.util.concurrent.CancellationException
 

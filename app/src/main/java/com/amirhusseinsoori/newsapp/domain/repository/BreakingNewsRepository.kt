@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.domain.repository
+package com.amirhusseinsoori.newsapp.domain.repository
 
 import androidx.paging.PagingData
 import com.amirhusseinsoori.newsapp.api.response.Article

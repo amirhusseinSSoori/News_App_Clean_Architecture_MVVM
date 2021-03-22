@@ -35,9 +35,9 @@ object RetrofitModule {
     fun provideOkHttp(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient{
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .readTimeout(8000 , TimeUnit.SECONDS)
-            .writeTimeout(8000 , TimeUnit.SECONDS)
-            .connectTimeout(1 , TimeUnit.MINUTES)
+            .readTimeout(500 , TimeUnit.SECONDS)
+            .writeTimeout(500 , TimeUnit.SECONDS)
+            .connectTimeout(500 , TimeUnit.SECONDS)
             .build()
     }
 

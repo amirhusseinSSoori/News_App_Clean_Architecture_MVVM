@@ -3,15 +3,16 @@ package com.amirhusseinsoori.newsapp.ui.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import com.amirhusseinsoori.common.BaseFragment
+import com.amirhusseinsoori.newsapp.common.BaseFragment
 import com.amirhusseinsoori.newsapp.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentSearchNewsBinding
-import com.amirhusseinsoori.newsapp.ui.viewModel.SearchViewModel
 import com.amirhusseinsoori.newsapp.paging.LoadStateAdapterNews
+import com.amirhusseinsoori.newsapp.ui.viewModel.SearchViewModel
 import com.amirhusseinsoori.newsapp.util.onTextChange
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search_news.*
@@ -40,14 +41,16 @@ class SearchNewsFragment :
         super.onViewCreated(view, savedInstanceState)
         adapterNews = NewsAdapter()
 
-        //  searchOnCollect("")
+        rvSearchNews.setHasFixedSize(true)
         binding.etSearch.onTextChange {
             if (!etSearch.text.trim().toString().isNullOrEmpty()) {
                 timer.schedule(object : TimerTask() {
                     override fun run() {
 
-                        CoroutineScope(Dispatchers.Main + Job() + handlerException).launch {
-                            searchOnCollect(it)
+                        lifecycleScope.launch(Dispatchers.Main + handlerException) {
+
+                            searchNews(it)
+                            searchOnCollect()
 
                         }
 
@@ -57,52 +60,68 @@ class SearchNewsFragment :
             }
         }
 
+
+        searchOnCollect()
+
+
     }
 
 
-    fun searchOnCollect(q: String) {
+    fun searchNews(q: String) {
+        viewModel.searchNews(q)
+    }
+
+    private fun searchOnCollect() {
 
         lifecycleScope.launch(Dispatchers.Main + Job() + handlerException) {
-            viewModel.searchNews(q)
-                .collect {
-                    rvSearchNews.setHasFixedSize(true)
 
-                    adapterNews.submitData(viewLifecycleOwner.lifecycle, it)
+            viewModel.getDetailsCollect.collect { search ->
 
+                when (search) {
+                    is SearchViewModel.DetailsNetwork.Success -> {
+                        search.data.collect {
 
-                    binding.rvSearchNews.adapter = adapterNews
+                            adapterNews.submitData(viewLifecycleOwner.lifecycle, it)
+                            binding.rvSearchNews.adapter = adapterNews
 
-
-                    binding.rvSearchNews.adapter = adapterNews.withLoadStateHeaderAndFooter(
-                        header = LoadStateAdapterNews { adapterNews.retry() },
-                        footer = LoadStateAdapterNews { adapterNews.retry() },
-                    )
-
-
-                    adapterNews.addLoadStateListener { loadState ->
-                        binding.progressbarCallVideoSearch.isVisible =
-                            loadState.source.refresh is LoadState.Loading
-                        binding.rvSearchNews.isVisible =
-                            loadState.source.refresh is LoadState.NotLoading
-                        binding.buttonRetrySearch.isVisible =
-                            loadState.source.refresh is LoadState.Error
-                        binding.textViewErrorSearch.isVisible =
-                            loadState.source.refresh is LoadState.Error
-
-                        // empty view
-                        if (loadState.source.refresh is LoadState.NotLoading &&
-                            loadState.append.endOfPaginationReached &&
-                            adapterNews.itemCount < 1
-                        ) {
-                            binding.rvSearchNews.isVisible = false
-                            binding.textViewEmptySearch.isVisible = true
-                        } else {
-                            binding.textViewEmptySearch.isVisible = false
                         }
+                    }
+                    is SearchViewModel.DetailsNetwork.Failed -> {
+                        Log.e("TAG", "searchOnCollect:  ${search.message}")
 
                     }
+                    else -> Unit
                 }
-        }
 
+
+            }
+        }
+        binding.rvSearchNews.adapter = adapterNews.withLoadStateHeaderAndFooter(
+            header = LoadStateAdapterNews { adapterNews.retry() },
+            footer = LoadStateAdapterNews { adapterNews.retry() },
+        )
+
+        adapterNews.addLoadStateListener { loadState ->
+            binding.progressbarCallVideoSearch.isVisible =
+                loadState.source.refresh is LoadState.Loading
+            binding.rvSearchNews.isVisible =
+                loadState.source.refresh is LoadState.NotLoading
+            binding.buttonRetrySearch.isVisible =
+                loadState.source.refresh is LoadState.Error
+            binding.textViewErrorSearch.isVisible =
+                loadState.source.refresh is LoadState.Error
+
+            // empty view
+            if (loadState.source.refresh is LoadState.NotLoading &&
+                loadState.append.endOfPaginationReached &&
+                adapterNews.itemCount < 1
+            ) {
+                binding.rvSearchNews.isVisible = false
+                binding.textViewEmptySearch.isVisible = true
+            } else {
+                binding.textViewEmptySearch.isVisible = false
+            }
+        }
     }
+
 }

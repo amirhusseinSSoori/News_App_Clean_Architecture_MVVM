@@ -3,18 +3,50 @@ package com.amirhusseinsoori.newsapp.ui.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.amirhusseinsoori.domain.usecase.SearchNewUseCase
+import com.amirhusseinsoori.newsapp.domain.model.ApiError
+import com.amirhusseinsoori.newsapp.domain.usecase.SearchNewUseCase
+import com.amirhusseinsoori.newsapp.domain.usecase.base.UseCaseResponse
 import com.amirhusseinsoori.newsapp.api.response.Article
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
+
 @HiltViewModel
-class SearchViewModel @Inject constructor(val repository: SearchNewUseCase):ViewModel(){
+class SearchViewModel @Inject constructor(val repository: SearchNewUseCase) : ViewModel() {
 
 
+    var getDetails = MutableStateFlow<DetailsNetwork>(DetailsNetwork.Empty)
+    val getDetailsCollect: StateFlow<DetailsNetwork> = getDetails
 
-    suspend fun searchNews(query:String): Flow<PagingData<Article>> {
-        return repository.execute(query).cachedIn(viewModelScope)
+
+    fun searchNews(query: String) {
+        return repository.invoke(viewModelScope, query, object :
+            UseCaseResponse<Flow<PagingData<Article>>> {
+            override fun onSuccess(result: Flow<PagingData<Article>>) {
+
+                getDetails.value = DetailsNetwork.Success(result)
+
+            }
+
+            override fun onError(apiError: ApiError?) {
+                getDetails.value = DetailsNetwork.Failed(apiError!!.message)
+            }
+
+        })
+    }
+
+    sealed class DetailsNetwork() {
+        object Empty : DetailsNetwork()
+        class Success(var data: Flow<PagingData<Article>>) : DetailsNetwork()
+        class Failed(var message: String?) : DetailsNetwork()
+    }
+
+    override fun onCleared() {
+        viewModelScope.cancel()
+        super.onCleared()
     }
 }
+

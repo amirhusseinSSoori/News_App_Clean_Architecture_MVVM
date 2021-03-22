@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import com.amirhusseinsoori.common.BaseFragment
+import com.amirhusseinsoori.newsapp.common.BaseFragment
 import com.amirhusseinsoori.newsapp.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentBreakingNewsBinding
 import com.amirhusseinsoori.newsapp.ui.viewModel.NewsViewModel

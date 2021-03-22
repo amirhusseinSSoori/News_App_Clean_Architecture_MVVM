@@ -1,7 +1,7 @@
-package com.amirhusseinsoori.domain.exception
+package com.amirhusseinsoori.newsapp.domain.exception
 
-import com.amirhusseinsoori.domain.model.ApiError
-import com.amirhusseinsoori.domain.model.UNKNOWN_ERROR_MESSAGE
+import com.amirhusseinsoori.newsapp.domain.model.ApiError
+import com.amirhusseinsoori.newsapp.domain.model.UNKNOWN_ERROR_MESSAGE
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -48,6 +48,7 @@ fun traceErrorException(throwable: Throwable?): ApiError  {
                     throwable.code(),
                     ApiError.ErrorStatus.CONFLICT
                 )
+
                 500 -> ApiError(
                     throwable.message(),
                     throwable.code(),
