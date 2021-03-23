@@ -23,10 +23,6 @@ abstract class BaseFragment<VB: ViewBinding>(
 
 
 
-     fun isNetworkConnected(context: Context): Boolean {
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        return cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

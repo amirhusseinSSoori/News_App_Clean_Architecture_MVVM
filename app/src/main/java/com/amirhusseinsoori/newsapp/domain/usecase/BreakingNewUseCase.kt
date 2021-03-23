@@ -3,7 +3,7 @@ package com.amirhusseinsoori.newsapp.domain.usecase
 import androidx.paging.PagingData
 import com.amirhusseinsoori.newsapp.domain.repository.BreakingNewsRepository
 import com.amirhusseinsoori.newsapp.domain.usecase.base.UseCase
-import com.amirhusseinsoori.newsapp.api.response.Article
+import com.amirhusseinsoori.newsapp.data.api.response.Article
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
