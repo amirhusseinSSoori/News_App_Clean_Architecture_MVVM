@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.amirhusseinsoori.newsapp.domain.model.ApiError
 import com.amirhusseinsoori.newsapp.domain.usecase.SearchNewUseCase
 import com.amirhusseinsoori.newsapp.domain.usecase.base.UseCaseResponse
-import com.amirhusseinsoori.newsapp.data.api.response.Article
+import com.amirhusseinsoori.newsapp.data.network.response.Article
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow

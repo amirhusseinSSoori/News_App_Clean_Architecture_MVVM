@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.data.paging
+package com.amirhusseinsoori.newsapp.data.network.paging
 
 import android.view.LayoutInflater
 import android.view.View

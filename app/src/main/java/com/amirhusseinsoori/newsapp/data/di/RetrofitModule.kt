@@ -1,7 +1,7 @@
 package com.amirhusseinsoori.newsapp.data.di
 
 import com.amirhusseinsoori.newsapp.BuildConfig.DEBUG
-import com.amirhusseinsoori.newsapp.data.api.NewsAPI
+import com.amirhusseinsoori.newsapp.data.network.NewsAPI
 import com.amirhusseinsoori.newsapp.Presentation.util.Constants.Companion.BASE_URL
 import dagger.Lazy
 import dagger.Module

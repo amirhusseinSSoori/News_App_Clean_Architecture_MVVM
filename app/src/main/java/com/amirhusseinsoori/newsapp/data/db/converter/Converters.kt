@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.data.db
+package com.amirhusseinsoori.newsapp.data.db.converter
 
 import androidx.room.TypeConverter
 import com.amirhusseinsoori.newsapp.data.db.entity.SourceEntity

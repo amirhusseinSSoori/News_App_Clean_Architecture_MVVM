@@ -10,7 +10,7 @@ import com.amirhusseinsoori.newsapp.common.BaseFragment
 import com.amirhusseinsoori.newsapp.Presentation.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentBreakingNewsBinding
 import com.amirhusseinsoori.newsapp.Presentation.ui.viewModel.NewsViewModel
-import com.amirhusseinsoori.newsapp.data.paging.LoadStateAdapterNews
+import com.amirhusseinsoori.newsapp.data.network.paging.LoadStateAdapterNews
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_breaking_news.*
 import kotlinx.coroutines.Dispatchers

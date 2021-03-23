@@ -1,6 +1,6 @@
-package com.amirhusseinsoori.newsapp.data.api
+package com.amirhusseinsoori.newsapp.data.network
 
-import com.amirhusseinsoori.newsapp.data.api.response.NewsResponse
+import com.amirhusseinsoori.newsapp.data.network.response.NewsResponse
 import com.amirhusseinsoori.newsapp.Presentation.util.Constants.Companion.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -10,7 +10,7 @@ import androidx.paging.LoadState
 import com.amirhusseinsoori.newsapp.common.BaseFragment
 import com.amirhusseinsoori.newsapp.Presentation.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentSearchNewsBinding
-import com.amirhusseinsoori.newsapp.data.paging.LoadStateAdapterNews
+import com.amirhusseinsoori.newsapp.data.network.paging.LoadStateAdapterNews
 import com.amirhusseinsoori.newsapp.Presentation.ui.viewModel.SearchViewModel
 import com.amirhusseinsoori.newsapp.Presentation.util.onTextChange
 import dagger.hilt.android.AndroidEntryPoint

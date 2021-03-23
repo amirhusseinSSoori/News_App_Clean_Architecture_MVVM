@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.amirhusseinsoori.newsapp.data.api.response.Article
+import com.amirhusseinsoori.newsapp.data.network.response.Article
 import com.amirhusseinsoori.newsapp.databinding.ItemArticlePreviewBinding
 import com.bumptech.glide.Glide
 
