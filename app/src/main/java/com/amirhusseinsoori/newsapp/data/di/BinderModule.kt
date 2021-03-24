@@ -1,7 +1,7 @@
 package com.amirhusseinsoori.newsapp.data.di
 
-import com.amirhusseinsoori.newsapp.domain.repository.BreakingNewsRepository
-import com.amirhusseinsoori.newsapp.domain.repository.SearchNewsRepository
+import com.amirhusseinsoori.domain.repository.BreakingNewsRepository
+import com.amirhusseinsoori.domain.repository.SearchNewsRepository
 import com.amirhusseinsoori.newsapp.data.repository.BreakingNewsRepositoryImpl
 import com.amirhusseinsoori.newsapp.data.repository.SearchNewsRepositoryImpI
 import dagger.Binds

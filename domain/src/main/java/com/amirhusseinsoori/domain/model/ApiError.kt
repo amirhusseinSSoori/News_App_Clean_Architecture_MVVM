@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.domain.model
+package com.amirhusseinsoori.domain.model
 
 private const val BAD_REQUEST_ERROR_MESSAGE = "Bad Request!"
 private const val FORBIDDEN_ERROR_MESSAGE = "Forbidden!"

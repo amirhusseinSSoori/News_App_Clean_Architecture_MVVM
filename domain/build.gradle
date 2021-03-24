@@ -1,9 +1,8 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 apply from: '../dependencies.gradle'
 android {
@@ -11,13 +10,13 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.amirhusseinsoori.newsapp"
         minSdkVersion 22
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -33,14 +32,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    buildFeatures {
-        viewBinding true
-
-    }
 }
 
 dependencies {
+
 
 
     //----------------- preDefine -----------------
@@ -62,32 +57,8 @@ dependencies {
     implementation retrofit.retrofit
     implementation retrofit.converterGson
 
-    //----------------- navigationComponent -----------------
-    implementation navigationComponent.navFragmentKtx
-    implementation navigationComponent.navUiKtx
-
     //----------------- paging -----------------
     implementation paging.paging
 
-    //----------------- coroutines -----------------
-    implementation coroutines.coroutines
-    implementation coroutines.coroutinesCore
-    implementation coroutines.coroutiensLifeCycleViewModel
 
-    //----------------- room -----------------
-    implementation room.room
-    kapt room.roomKapt
-    implementation room.roomCoroutines
-
-
-    //----------------- utils -----------------
-    implementation utils.sdp
-    implementation utils.timber
-    implementation utils.loggingInterceptor
-    implementation utils.multidex
-    implementation utils.glide
-    kapt utils.annotation_glide
-    debugImplementation utils.leakcanary
-
-    implementation project(path: ':domain')
 }

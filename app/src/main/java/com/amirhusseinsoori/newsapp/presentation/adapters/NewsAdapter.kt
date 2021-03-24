@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 import com.amirhusseinsoori.newsapp.databinding.ItemArticlePreviewBinding
-import com.amirhusseinsoori.newsapp.presentation.entity.Article
+import com.amirhusseinsoori.domain.entity.Article
 import com.bumptech.glide.Glide
 
 class NewsAdapter(private val interaction: OnBreakingListener? = null) :

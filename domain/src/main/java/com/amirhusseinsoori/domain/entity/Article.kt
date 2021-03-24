@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.presentation.entity
+package com.amirhusseinsoori.domain.entity
 
 data class Article(
     val author: String?=null,

@@ -1,7 +1,7 @@
 package com.amirhusseinsoori.newsapp.data.network
 
 
-import com.amirhusseinsoori.newsapp.presentation.entity.NewsResponse
+import com.amirhusseinsoori.domain.entity.NewsResponse
 import com.amirhusseinsoori.newsapp.presentation.util.Constants.Companion.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Query

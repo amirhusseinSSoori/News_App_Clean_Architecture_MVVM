@@ -1,9 +1,9 @@
-package com.amirhusseinsoori.newsapp.domain.usecase
+package com.amirhusseinsoori.domain.usecase
 
 import androidx.paging.PagingData
-import com.amirhusseinsoori.newsapp.domain.repository.SearchNewsRepository
-import com.amirhusseinsoori.newsapp.domain.usecase.base.UseCase
-import com.amirhusseinsoori.newsapp.presentation.entity.Article
+import com.amirhusseinsoori.domain.repository.SearchNewsRepository
+import com.amirhusseinsoori.domain.usecase.base.UseCase
+import com.amirhusseinsoori.domain.entity.Article
 
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

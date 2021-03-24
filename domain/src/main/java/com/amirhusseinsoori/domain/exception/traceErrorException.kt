@@ -1,7 +1,7 @@
-package com.amirhusseinsoori.newsapp.domain.exception
+package com.amirhusseinsoori.domain.exception
 
-import com.amirhusseinsoori.newsapp.domain.model.ApiError
-import com.amirhusseinsoori.newsapp.domain.model.UNKNOWN_ERROR_MESSAGE
+import com.amirhusseinsoori.domain.model.ApiError
+import com.amirhusseinsoori.domain.model.UNKNOWN_ERROR_MESSAGE
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -12,7 +12,7 @@ import java.net.SocketTimeoutException
  * depending on what exception returns [ApiErrorf]
  *
  * */
-fun traceErrorException(throwable: Throwable?): ApiError  {
+fun traceErrorException(throwable: Throwable?): ApiError {
 
     return when (throwable) {
 

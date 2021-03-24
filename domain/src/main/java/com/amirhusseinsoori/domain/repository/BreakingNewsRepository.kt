@@ -1,7 +1,7 @@
-package com.amirhusseinsoori.newsapp.domain.repository
+package com.amirhusseinsoori.domain.repository
 
 import androidx.paging.PagingData
-import com.amirhusseinsoori.newsapp.presentation.entity.Article
+import com.amirhusseinsoori.domain.entity.Article
 
 import kotlinx.coroutines.flow.Flow
 
