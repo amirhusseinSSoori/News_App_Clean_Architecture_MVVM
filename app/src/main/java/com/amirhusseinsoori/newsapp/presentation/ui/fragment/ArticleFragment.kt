@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.Presentation.ui.fragment
+package com.amirhusseinsoori.newsapp.presentation.ui.fragment
 
 import android.os.Bundle
 import android.view.View

@@ -2,7 +2,7 @@ package com.amirhusseinsoori.newsapp.data.di
 
 
 import com.amirhusseinsoori.newsapp.data.network.NewsAPI
-import com.amirhusseinsoori.newsapp.Presentation.util.Constants.Companion.BASE_URL
+import com.amirhusseinsoori.newsapp.presentation.util.Constants.Companion.BASE_URL
 import com.squareup.leakcanary.BuildConfig.DEBUG
 import dagger.Lazy
 import dagger.Module

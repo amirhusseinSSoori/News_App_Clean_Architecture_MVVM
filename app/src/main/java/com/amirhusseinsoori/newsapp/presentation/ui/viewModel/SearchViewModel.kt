@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.Presentation.ui.viewModel
+package com.amirhusseinsoori.newsapp.presentation.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,8 @@ import androidx.paging.PagingData
 import com.amirhusseinsoori.newsapp.domain.model.ApiError
 import com.amirhusseinsoori.newsapp.domain.usecase.SearchNewUseCase
 import com.amirhusseinsoori.newsapp.domain.usecase.base.UseCaseResponse
-import com.amirhusseinsoori.newsapp.data.network.response.Article
+import com.amirhusseinsoori.newsapp.presentation.entity.Article
+
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow

@@ -1,12 +1,13 @@
-package com.amirhusseinsoori.newsapp.Presentation.adapters
+package com.amirhusseinsoori.newsapp.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.amirhusseinsoori.newsapp.data.network.response.Article
+
 import com.amirhusseinsoori.newsapp.databinding.ItemArticlePreviewBinding
+import com.amirhusseinsoori.newsapp.presentation.entity.Article
 import com.bumptech.glide.Glide
 
 class NewsAdapter(private val interaction: OnBreakingListener? = null) :

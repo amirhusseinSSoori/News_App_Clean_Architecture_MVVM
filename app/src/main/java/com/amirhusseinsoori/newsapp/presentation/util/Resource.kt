@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.Presentation.util
+package com.amirhusseinsoori.newsapp.presentation.util
 
 sealed class Resource<T>(
     val data: T? = null,

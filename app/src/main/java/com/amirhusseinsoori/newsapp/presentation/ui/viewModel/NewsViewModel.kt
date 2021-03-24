@@ -1,11 +1,11 @@
-package com.amirhusseinsoori.newsapp.Presentation.ui.viewModel
+package com.amirhusseinsoori.newsapp.presentation.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.amirhusseinsoori.newsapp.domain.usecase.BreakingNewUseCase
-import com.amirhusseinsoori.newsapp.data.network.response.Article
+import com.amirhusseinsoori.newsapp.presentation.entity.Article
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

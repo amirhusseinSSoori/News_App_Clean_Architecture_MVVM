@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.Presentation.ui.fragment
+package com.amirhusseinsoori.newsapp.presentation.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +8,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.amirhusseinsoori.newsapp.common.BaseFragment
-import com.amirhusseinsoori.newsapp.Presentation.adapters.NewsAdapter
+import com.amirhusseinsoori.newsapp.presentation.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentSearchNewsBinding
 import com.amirhusseinsoori.newsapp.data.network.paging.LoadStateAdapterNews
-import com.amirhusseinsoori.newsapp.Presentation.ui.viewModel.SearchViewModel
-import com.amirhusseinsoori.newsapp.Presentation.util.onTextChange
+import com.amirhusseinsoori.newsapp.presentation.ui.viewModel.SearchViewModel
+import com.amirhusseinsoori.newsapp.presentation.util.onTextChange
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search_news.*
 import kotlinx.coroutines.*

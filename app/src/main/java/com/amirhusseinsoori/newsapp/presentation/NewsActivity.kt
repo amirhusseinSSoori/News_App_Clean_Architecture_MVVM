@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.Presentation
+package com.amirhusseinsoori.newsapp.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

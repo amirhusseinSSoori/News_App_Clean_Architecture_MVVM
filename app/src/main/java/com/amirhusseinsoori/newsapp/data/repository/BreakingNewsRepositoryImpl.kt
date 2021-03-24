@@ -2,8 +2,9 @@ package com.amirhusseinsoori.newsapp.data.repository
 
 import androidx.paging.PagingData
 import com.amirhusseinsoori.newsapp.domain.repository.BreakingNewsRepository
-import com.amirhusseinsoori.newsapp.data.network.response.Article
+
 import com.amirhusseinsoori.newsapp.data.source.Remote
+import com.amirhusseinsoori.newsapp.presentation.entity.Article
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

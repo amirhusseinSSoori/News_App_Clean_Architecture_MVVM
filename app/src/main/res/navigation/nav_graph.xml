@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/breakingNewsFragment"
         tools:layout="@layout/fragment_breaking_news"
-        android:name="com.amirhusseinsoori.newsapp.Presentation.ui.fragment.BreakingNewsFragment"
+        android:name="com.amirhusseinsoori.newsapp.presentation.ui.fragment.BreakingNewsFragment"
         android:label="BreakingNewsFragment">
         <action
             android:id="@+id/action_breakingNewsFragment_to_articleFragment"
@@ -19,14 +19,14 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.amirhusseinsoori.newsapp.Presentation.ui.fragment.ArticleFragment"
+        android:name="com.amirhusseinsoori.newsapp.presentation.ui.fragment.ArticleFragment"
         tools:layout="@layout/fragment_article"
         android:label="ArticleFragment" />
 
     <fragment
         android:id="@+id/searchNewsFragment"
         tools:layout="@layout/fragment_search_news"
-        android:name="com.amirhusseinsoori.newsapp.Presentation.ui.fragment.SearchNewsFragment"
+        android:name="com.amirhusseinsoori.newsapp.presentation.ui.fragment.SearchNewsFragment"
         android:label="SearchNewsFragment"
         >
         <action
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/savedNewsFragment"
         tools:layout="@layout/fragment_saved_news"
-        android:name="com.amirhusseinsoori.newsapp.Presentation.ui.fragment.SavedNewsFragment"
+        android:name="com.amirhusseinsoori.newsapp.presentation.ui.fragment.SavedNewsFragment"
         android:label="SavedNewsFragment" >
         <action
             android:id="@+id/action_savedNewsFragment_to_articleFragment"

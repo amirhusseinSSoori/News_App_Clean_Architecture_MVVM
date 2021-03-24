@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.Presentation.util
+package com.amirhusseinsoori.newsapp.presentation.util
 
 import android.text.Editable
 import android.text.TextWatcher

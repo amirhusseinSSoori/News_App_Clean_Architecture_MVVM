@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.Presentation.util
+package com.amirhusseinsoori.newsapp.presentation.util
 
 class Constants {
     companion object {

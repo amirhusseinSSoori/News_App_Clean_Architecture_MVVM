@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.amirhusseinsoori.newsapp.data.db.ArticleDao
 import com.amirhusseinsoori.newsapp.data.db.MyDataBase
-import com.amirhusseinsoori.newsapp.Presentation.util.Constants.Companion.DATABASE_NAME
+import com.amirhusseinsoori.newsapp.presentation.util.Constants.Companion.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

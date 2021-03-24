@@ -1,11 +1,11 @@
-package com.amirhusseinsoori.newsapp.Presentation.ui.fragment
+package com.amirhusseinsoori.newsapp.presentation.ui.fragment
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.amirhusseinsoori.newsapp.common.BaseFragment
 import com.amirhusseinsoori.newsapp.databinding.FragmentSavedNewsBinding
-import com.amirhusseinsoori.newsapp.Presentation.ui.viewModel.NewsViewModel
+import com.amirhusseinsoori.newsapp.presentation.ui.viewModel.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

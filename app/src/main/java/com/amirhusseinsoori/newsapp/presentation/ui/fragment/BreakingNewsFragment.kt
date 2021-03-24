@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.Presentation.ui.fragment
+package com.amirhusseinsoori.newsapp.presentation.ui.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -7,9 +7,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.amirhusseinsoori.newsapp.common.BaseFragment
-import com.amirhusseinsoori.newsapp.Presentation.adapters.NewsAdapter
+import com.amirhusseinsoori.newsapp.presentation.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentBreakingNewsBinding
-import com.amirhusseinsoori.newsapp.Presentation.ui.viewModel.NewsViewModel
+import com.amirhusseinsoori.newsapp.presentation.ui.viewModel.NewsViewModel
 import com.amirhusseinsoori.newsapp.data.network.paging.LoadStateAdapterNews
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_breaking_news.*

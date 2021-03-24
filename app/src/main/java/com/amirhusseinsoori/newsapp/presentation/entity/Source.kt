@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.data.network.response
+package com.amirhusseinsoori.newsapp.presentation.entity
 
 data class Source(
     val id: Any,

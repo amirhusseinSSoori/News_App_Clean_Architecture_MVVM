@@ -1,7 +1,8 @@
 package com.amirhusseinsoori.newsapp.domain.repository
 
 import androidx.paging.PagingData
-import com.amirhusseinsoori.newsapp.data.network.response.Article
+import com.amirhusseinsoori.newsapp.presentation.entity.Article
+
 import kotlinx.coroutines.flow.Flow
 
 interface SearchNewsRepository {
