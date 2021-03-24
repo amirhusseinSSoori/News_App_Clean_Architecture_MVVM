@@ -44,6 +44,7 @@ dependencies {
 
     implementation project(path: ':domain')
     implementation project(path: ':data')
+    implementation project(path: ':common')
     //----------------- preDefine -----------------
     implementation preDefine.kotlin
     implementation preDefine.corKtx

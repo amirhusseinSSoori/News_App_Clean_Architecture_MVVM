@@ -1,9 +1,10 @@
 package com.amirhusseinsoori.data.di
 
 
+import com.amirhusseinsoori.common.Constants.Companion.BASE_URL
 import com.amirhusseinsoori.data.BuildConfig.DEBUG
-import com.amirhusseinsoori.data.Constants.Companion.BASE_URL
-import com.amirhusseinsoori.newsapp.data.network.NewsAPI
+
+import com.amirhusseinsoori.data.network.NewsAPI
 
 import dagger.Lazy
 import dagger.Module
@@ -58,7 +59,7 @@ object RetrofitModule {
     }
 
     @Provides
-    fun provideNewsApi(retrofit: Retrofit): NewsAPI{
+    fun provideNewsApi(retrofit: Retrofit): NewsAPI {
         return retrofit.create(NewsAPI::class.java)
     }
 }

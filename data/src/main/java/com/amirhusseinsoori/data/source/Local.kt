@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.data.source
+package com.amirhusseinsoori.data.source
 
 import com.amirhusseinsoori.data.db.ArticleDao
 import javax.inject.Inject

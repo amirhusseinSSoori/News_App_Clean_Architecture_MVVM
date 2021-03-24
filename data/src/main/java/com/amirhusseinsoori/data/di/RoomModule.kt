@@ -1,8 +1,9 @@
-package com.amirhusseinsoori.newsapp.data.di
+package com.amirhusseinsoori.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.amirhusseinsoori.data.Constants.Companion.DATABASE_NAME
+import com.amirhusseinsoori.common.Constants.Companion.DATABASE_NAME
+
 import com.amirhusseinsoori.data.db.ArticleDao
 import com.amirhusseinsoori.data.db.MyDataBase
 

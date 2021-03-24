@@ -2,9 +2,9 @@ package com.amirhusseinsoori.newsapp.data.source
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.amirhusseinsoori.newsapp.data.network.NewsAPI
-import com.amirhusseinsoori.newsapp.data.network.paging.BreakingPagingSource
-import com.amirhusseinsoori.newsapp.data.network.paging.SearchPagingSource
+import com.amirhusseinsoori.data.network.NewsAPI
+import com.amirhusseinsoori.data.network.paging.BreakingPagingSource
+import com.amirhusseinsoori.data.network.paging.SearchPagingSource
 import javax.inject.Inject
 
 class Remote @Inject constructor(val api: NewsAPI) {

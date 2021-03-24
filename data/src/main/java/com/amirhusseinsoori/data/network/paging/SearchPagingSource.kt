@@ -1,9 +1,9 @@
-package com.amirhusseinsoori.newsapp.data.network.paging
+package com.amirhusseinsoori.data.network.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.amirhusseinsoori.data.Constants.Companion.PAGING_START_PAGE
-import com.amirhusseinsoori.newsapp.data.network.NewsAPI
+import com.amirhusseinsoori.common.Constants.Companion.PAGING_START_PAGE
+import com.amirhusseinsoori.data.network.NewsAPI
 import com.amirhusseinsoori.domain.entity.Article
 import retrofit2.HttpException
 
