@@ -1,14 +1,17 @@
 package com.amirhusseinsoori.newsapp.data.di
 
-import com.amirhusseinsoori.newsapp.BuildConfig.DEBUG
+
 import com.amirhusseinsoori.newsapp.data.network.NewsAPI
 import com.amirhusseinsoori.newsapp.Presentation.util.Constants.Companion.BASE_URL
+import com.squareup.leakcanary.BuildConfig.DEBUG
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Call
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -45,10 +48,11 @@ object RetrofitModule {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
-            .callFactory { request ->
+            .callFactory(object : Call.Factory{
                 // this bellow fun ,called in background thread
-                client.get().newCall(request)
-            }
+                override fun newCall(request: Request): Call =
+                    client.get().newCall(request)
+            })
             .build()
     }
 
