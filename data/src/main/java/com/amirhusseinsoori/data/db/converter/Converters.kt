@@ -1,17 +1,18 @@
 package com.amirhusseinsoori.data.db.converter
 
 import androidx.room.TypeConverter
-import com.amirhusseinsoori.data.db.entity.SourceEntity
+import com.amirhusseinsoori.domain.entity.Source
+
 
 class Converters {
 
     @TypeConverter
-    fun fromSource(source: SourceEntity): String {
+    fun fromSource(source: Source): String {
         return source.name
     }
 
     @TypeConverter
-    fun toSource(name: String): SourceEntity {
-        return SourceEntity(name, name)
+    fun toSource(name: String): Source {
+        return Source(name, name)
     }
 }

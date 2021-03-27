@@ -6,7 +6,10 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.newsapp.R
 import com.amirhusseinsoori.newsapp.common.BaseFragment
 import com.amirhusseinsoori.newsapp.presentation.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentSearchNewsBinding
@@ -22,7 +25,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchNewsFragment :
-    BaseFragment<FragmentSearchNewsBinding>(FragmentSearchNewsBinding::inflate) {
+    BaseFragment<FragmentSearchNewsBinding>(FragmentSearchNewsBinding::inflate) ,NewsAdapter.OnBreakingListener{
 
 
     private val viewModel: SearchViewModel by viewModels()
@@ -38,7 +41,7 @@ class SearchNewsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapterNews = NewsAdapter()
+        adapterNews = NewsAdapter(this)
 
         rvSearchNews.setHasFixedSize(true)
         binding.etSearch.onTextChange {
@@ -121,6 +124,12 @@ class SearchNewsFragment :
                 binding.textViewEmptySearch.isVisible = false
             }
         }
+    }
+
+    override fun onBreakingItemClick(item: Article) {
+
+        val action = SearchNewsFragmentDirections.actionSearchNewsFragmentToArticleFragment(item)
+        findNavController().navigate(action)
     }
 
 }

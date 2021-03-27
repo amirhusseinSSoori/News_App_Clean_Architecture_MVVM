@@ -21,7 +21,12 @@
         android:id="@+id/articleFragment"
         android:name="com.amirhusseinsoori.newsapp.presentation.ui.fragment.ArticleFragment"
         tools:layout="@layout/fragment_article"
-        android:label="ArticleFragment" />
+        android:label="ArticleFragment" >
+
+        <argument
+            android:name="article"
+            app:argType="com.amirhusseinsoori.domain.entity.Article" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchNewsFragment"

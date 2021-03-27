@@ -5,7 +5,9 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.amirhusseinsoori.domain.entity.Article
 import com.amirhusseinsoori.newsapp.common.BaseFragment
 import com.amirhusseinsoori.newsapp.presentation.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentBreakingNewsBinding
@@ -19,14 +21,14 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class BreakingNewsFragment :
-    BaseFragment<FragmentBreakingNewsBinding>(FragmentBreakingNewsBinding::inflate) {
+    BaseFragment<FragmentBreakingNewsBinding>(FragmentBreakingNewsBinding::inflate),NewsAdapter.OnBreakingListener {
 
     private lateinit var adapter: NewsAdapter
     private val viewModel: NewsViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = NewsAdapter()
+        adapter = NewsAdapter(this)
         setupCollect()
 
         button_retry.setOnClickListener {
@@ -70,6 +72,11 @@ class BreakingNewsFragment :
                 }
             }
         }
+    }
+
+    override fun onBreakingItemClick(item: Article) {
+        val action = BreakingNewsFragmentDirections.actionBreakingNewsFragmentToArticleFragment(item)
+        findNavController().navigate(action)
     }
 
 
