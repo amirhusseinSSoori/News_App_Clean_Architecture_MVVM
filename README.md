@@ -5,13 +5,15 @@ this is amazing my sample for learning clean Architecture
 
 **Dependencies**
 1. Kotlin
-2. MVVM
-3. clean architecture mvvm 
-4. Navigation Components
-5. hilt
-6. paging3
-7. module
-8. groovy
+2. coroutines
+3. Flow
+4. MVVM
+5. clean architecture mvvm 
+6. Navigation Components
+7. hilt
+8. paging3
+9. module
+10. groovy
 
 
 
