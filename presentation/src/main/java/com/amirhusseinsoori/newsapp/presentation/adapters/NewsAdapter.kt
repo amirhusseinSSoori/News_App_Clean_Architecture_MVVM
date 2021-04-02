@@ -1,5 +1,6 @@
 package com.amirhusseinsoori.newsapp.presentation.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.amirhusseinsoori.newsapp.databinding.ItemArticlePreviewBinding
 import com.amirhusseinsoori.domain.entity.Article
 import com.bumptech.glide.Glide
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerDrawable
 
 class NewsAdapter(private val interaction: OnBreakingListener? = null) :
     PagingDataAdapter<Article, NewsAdapter.BreakingNewsViewHolder>(DIFF_CALLBACK) {
@@ -50,7 +53,21 @@ class NewsAdapter(private val interaction: OnBreakingListener? = null) :
         }
 
         fun bind(item: Article) = binding.apply {
-            Glide.with(root).load(item.urlToImage).into(ivArticleImage)
+            var shimmer =Shimmer.ColorHighlightBuilder()
+                .setBaseColor(Color.parseColor("#F3F3F3"))
+                .setBaseAlpha(1F)
+                .setHighlightColor(Color.parseColor("#E7E7E7"))
+                .setHighlightAlpha(1F)
+                .setDropoff(50F)
+                .build()
+            var shimmerDrawable=ShimmerDrawable()
+            shimmerDrawable.setShimmer(shimmer)
+
+
+
+
+
+            Glide.with(root).load(item.urlToImage).placeholder(shimmerDrawable).into(ivArticleImage)
             tvSource.text = item.source!!.name
             tvTitle.text = item.title
             tvDescription.text = item.description

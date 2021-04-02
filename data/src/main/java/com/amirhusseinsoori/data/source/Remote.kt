@@ -1,4 +1,4 @@
-package com.amirhusseinsoori.newsapp.data.source
+package com.amirhusseinsoori.data.source
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

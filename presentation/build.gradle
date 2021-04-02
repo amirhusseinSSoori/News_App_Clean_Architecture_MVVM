@@ -89,6 +89,7 @@ dependencies {
     implementation utils.loggingInterceptor
     implementation utils.multidex
     implementation utils.glide
+    implementation utils.shimmer
     kapt utils.annotation_glide
     debugImplementation utils.leakcanary
 

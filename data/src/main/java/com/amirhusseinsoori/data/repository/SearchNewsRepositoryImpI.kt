@@ -3,7 +3,7 @@ package com.amirhusseinsoori.data.repository
 import androidx.paging.PagingData
 import com.amirhusseinsoori.domain.repository.SearchNewsRepository
 
-import com.amirhusseinsoori.newsapp.data.source.Remote
+import com.amirhusseinsoori.data.source.Remote
 import com.amirhusseinsoori.domain.entity.Article
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

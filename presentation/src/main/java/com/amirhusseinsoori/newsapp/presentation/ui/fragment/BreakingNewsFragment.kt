@@ -16,12 +16,14 @@ import com.amirhusseinsoori.newsapp.data.network.paging.LoadStateAdapterNews
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_breaking_news.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class BreakingNewsFragment :
-    BaseFragment<FragmentBreakingNewsBinding>(FragmentBreakingNewsBinding::inflate),NewsAdapter.OnBreakingListener {
+    BaseFragment<FragmentBreakingNewsBinding>(FragmentBreakingNewsBinding::inflate),
+    NewsAdapter.OnBreakingListener {
 
     private lateinit var adapter: NewsAdapter
     private val viewModel: NewsViewModel by viewModels()
@@ -29,6 +31,8 @@ class BreakingNewsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = NewsAdapter(this)
+        binding.shimmer.startShimmer()
+
         setupCollect()
 
         button_retry.setOnClickListener {
@@ -43,16 +47,20 @@ class BreakingNewsFragment :
     private fun setupCollect() {
         lifecycleScope.launch(Dispatchers.Main) {
             viewModel.breakingNews().collect {
+
+
                 binding.rvBreakingNews.setHasFixedSize(true)
                 adapter.submitData(viewLifecycleOwner.lifecycle, it)
+
                 binding.rvBreakingNews.adapter = adapter.withLoadStateHeaderAndFooter(
                     header = LoadStateAdapterNews { adapter.retry() },
                     footer = LoadStateAdapterNews { adapter.retry() },
                 )
 
+
+
                 adapter.addLoadStateListener { loadState ->
-                    binding.progressbarCallVideo.isVisible =
-                        loadState.source.refresh is LoadState.Loading
+
                     binding.rvBreakingNews.isVisible =
                         loadState.source.refresh is LoadState.NotLoading
                     binding.buttonRetry.isVisible = loadState.source.refresh is LoadState.Error
@@ -70,12 +78,16 @@ class BreakingNewsFragment :
                     }
 
                 }
+
+                binding.shimmer.stopShimmer()
+                binding.shimmer.visibility = View.GONE
             }
         }
     }
 
     override fun onBreakingItemClick(item: Article) {
-        val action = BreakingNewsFragmentDirections.actionBreakingNewsFragmentToArticleFragment(item)
+        val action =
+            BreakingNewsFragmentDirections.actionBreakingNewsFragmentToArticleFragment(item)
         findNavController().navigate(action)
     }
 
