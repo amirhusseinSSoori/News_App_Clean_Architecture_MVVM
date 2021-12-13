@@ -14,9 +14,7 @@ import com.amirhusseinsoori.newsapp.databinding.FragmentBreakingNewsBinding
 import com.amirhusseinsoori.newsapp.presentation.ui.viewModel.NewsViewModel
 import com.amirhusseinsoori.newsapp.data.network.paging.LoadStateAdapterNews
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_breaking_news.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -28,37 +26,30 @@ class BreakingNewsFragment :
     private lateinit var adapter: NewsAdapter
     private val viewModel: NewsViewModel by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.setUpEvent()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = NewsAdapter(this)
-        binding.shimmer.startShimmer()
-
         setupCollect()
-
-        button_retry.setOnClickListener {
+        binding.buttonRetry.setOnClickListener {
             setupCollect()
-
         }
-
-
     }
 
 
     private fun setupCollect() {
         lifecycleScope.launch(Dispatchers.Main) {
-            viewModel.breakingNews().collect {
-
-
+            viewModel._state.collect {
                 binding.rvBreakingNews.setHasFixedSize(true)
                 adapter.submitData(viewLifecycleOwner.lifecycle, it)
-
                 binding.rvBreakingNews.adapter = adapter.withLoadStateHeaderAndFooter(
                     header = LoadStateAdapterNews { adapter.retry() },
                     footer = LoadStateAdapterNews { adapter.retry() },
                 )
-
-
-
                 adapter.addLoadStateListener { loadState ->
 
                     binding.rvBreakingNews.isVisible =

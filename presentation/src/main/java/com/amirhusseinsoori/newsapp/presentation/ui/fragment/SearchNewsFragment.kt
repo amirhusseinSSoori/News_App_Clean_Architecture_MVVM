@@ -34,15 +34,17 @@ class SearchNewsFragment :
     @Inject
     lateinit var timer: Timer
     private val handlerException = CoroutineExceptionHandler { _, throwable ->
-
         Log.e("Error", "show Error Message : ${throwable.message}")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapterNews = NewsAdapter(this)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapterNews = NewsAdapter(this)
-
         rvSearchNews.setHasFixedSize(true)
         binding.etSearch.onTextChange {
             if (!etSearch.text.trim().toString().isNullOrEmpty()) {
@@ -50,7 +52,6 @@ class SearchNewsFragment :
                     override fun run() {
 
                         lifecycleScope.launch(Dispatchers.Main + handlerException) {
-
                             searchNews(it)
                             searchOnCollect()
 

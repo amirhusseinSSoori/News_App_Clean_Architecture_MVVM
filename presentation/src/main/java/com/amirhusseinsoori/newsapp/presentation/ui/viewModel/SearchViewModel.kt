@@ -27,11 +27,8 @@ class SearchViewModel @Inject constructor(val repository: SearchNewUseCase) : Vi
         return repository.invoke(viewModelScope, query, object :
             UseCaseResponse<Flow<PagingData<Article>>> {
             override fun onSuccess(result: Flow<PagingData<Article>>) {
-
                 getDetails.value = DetailsNetwork.Success(result)
-
             }
-
             override fun onError(apiError: ApiError?) {
                 getDetails.value = DetailsNetwork.Failed(apiError!!.message)
             }

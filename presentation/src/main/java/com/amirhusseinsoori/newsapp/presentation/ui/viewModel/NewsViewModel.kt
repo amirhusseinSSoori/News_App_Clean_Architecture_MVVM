@@ -8,16 +8,32 @@ import com.amirhusseinsoori.domain.entity.Article
 import com.amirhusseinsoori.domain.usecase.BreakingNewUseCase
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor( val useCase: BreakingNewUseCase): ViewModel()  {
 
 
+    val state= MutableStateFlow<PagingData<Article>>(PagingData.empty())
+    var _state=state.asStateFlow()
 
-    suspend fun breakingNews(): Flow<PagingData<Article>> {
-         return useCase.execute("us").cachedIn(viewModelScope)
+
+
+    fun setUpEvent(){
+        viewModelScope.launch {
+            useCase.execute("us").cachedIn(viewModelScope).collect {
+                state.value =it
+            }
+        }
     }
+
+
+
+
+
+
+
 
 }
