@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/pl/AndroidStudioProjects/News_App_Clean_Architecture_MVVMjopjop/presentation/src/main/res/drawable/ic_breaking_news.xml" value="0.3175925925925926" />
+        <entry key="..\:/Users/pl/AndroidStudioProjects/News_App_Clean_Architecture_MVVMjopjop/presentation/src/main/res/layout/activity_news.xml" value="0.13451086956521738" />
+        <entry key="..\:/Users/pl/AndroidStudioProjects/News_App_Clean_Architecture_MVVMjopjop/presentation/src/main/res/menu/bottom_navigation_menu.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

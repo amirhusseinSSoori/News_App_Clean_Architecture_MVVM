@@ -40,12 +40,11 @@ class SearchNewsFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adapterNews = NewsAdapter(this)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvSearchNews.setHasFixedSize(true)
+        R.id.savedNewsFragment
         binding.etSearch.onTextChange {
             if (!etSearch.text.trim().toString().isNullOrEmpty()) {
                 timer.schedule(object : TimerTask() {
