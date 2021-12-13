@@ -83,6 +83,7 @@ ext {
     navigationComponent = [
             navFragmentKtx: "androidx.navigation:navigation-fragment-ktx:$nav_version",
             navUiKtx      : "androidx.navigation:navigation-ui-ktx:$nav_version",
+            navRunTime    : "androidx.navigation:navigation-runtime-ktx:$nav_version",
             navFeatures   : "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
     ]
 

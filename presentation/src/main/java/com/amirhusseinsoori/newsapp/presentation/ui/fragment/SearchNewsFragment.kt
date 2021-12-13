@@ -44,7 +44,7 @@ class SearchNewsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        R.id.savedNewsFragment
+        R.id.saved_List
         binding.etSearch.onTextChange {
             if (!etSearch.text.trim().toString().isNullOrEmpty()) {
                 timer.schedule(object : TimerTask() {

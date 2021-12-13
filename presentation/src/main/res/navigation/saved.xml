@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/saved"
+    app:startDestination="@+id/saved_List">
+    <fragment
+        android:id="@+id/saved_List"
+        tools:layout="@layout/fragment_saved_news"
+        android:name="com.amirhusseinsoori.newsapp.presentation.ui.fragment.SavedNewsFragment"
+        android:label="SavedNewsFragment" >
+        <action
+            android:id="@+id/action_savedNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.amirhusseinsoori.newsapp.presentation.ui.fragment.ArticleFragment"
+        tools:layout="@layout/fragment_article"
+        android:label="ArticleFragment" >
+
+        <argument
+            android:name="article"
+            app:argType="com.amirhusseinsoori.domain.entity.Article" />
+    </fragment>
+</navigation>

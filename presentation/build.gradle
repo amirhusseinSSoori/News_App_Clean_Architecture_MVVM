@@ -66,6 +66,7 @@ dependencies {
     //----------------- navigationComponent -----------------
     implementation navigationComponent.navFragmentKtx
     implementation navigationComponent.navUiKtx
+    implementation navigationComponent.navRunTime
 
     //----------------- paging -----------------
     implementation paging.paging
