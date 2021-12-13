@@ -3,12 +3,6 @@ package com.amirhusseinsoori.newsapp.presentation.util
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-/**
- * Created by Vipul Asri on 15/07/20.
- * BottomNavHistory maintains history for user's navigation of bottom tabs, it stores latest unique history
- * User action: Tab 1 -> Tab 2 -> Tab 3 -> Tab 2
- * Result: Tab 1 -> Tab 3 -> Tab 2
- */
 
 @Parcelize
 data class BottomNavHistory(

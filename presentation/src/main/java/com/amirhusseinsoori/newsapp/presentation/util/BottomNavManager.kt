@@ -12,13 +12,7 @@ import com.amirhusseinsoori.newsapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-/**
- * Created by Vipul Asri on 15/07/20.
- * Ported from: https://github.com/android/architecture-components-samples/blob/master/NavigationAdvancedSample
- * Manages the various graphs needed for a [BottomNavigationView].
- *
- * This sample is a workaround until the Navigation Component supports multiple back stacks.
- */
+
 
 class BottomNavManager(
   private val fragmentManager: FragmentManager,
