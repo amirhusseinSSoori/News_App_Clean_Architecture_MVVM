@@ -1,11 +1,12 @@
 ext {
 
     //----------------- preDefine -----------------
-    kotlin_version ='1.6.10'
+    kotlin_version = '1.6.10'
     core_ktx_version = '1.7.0'
     appcompat_version = '1.4.2'
     material_version = '1.6.1'
     constraint_version = '2.1.4'
+    gson_version = '2.9.0'
     junit_version = '4.13.2'
     junit_test_version = '1.1.2'
     expresso_test_version = '3.3.0'
@@ -64,8 +65,8 @@ ext {
     ]
 
     hilt = [
-            hilt         : "com.google.dagger:hilt-android:$hilt_version",
-            hiltKapt     : "com.google.dagger:hilt-compiler:$hilt_version",
+            hilt    : "com.google.dagger:hilt-android:$hilt_version",
+            hiltKapt: "com.google.dagger:hilt-compiler:$hilt_version",
     ]
 
     retrofit = [
@@ -102,6 +103,7 @@ ext {
     ]
 
     utils = [
+            gson              : "com.google.code.gson:gson:$gson_version",
             sdp               : "com.intuit.sdp:sdp-android:$sdp_version",
             timber            : "com.jakewharton.timber:timber:$timber_version",
             keyboardEvent     : "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:$keyboard_version",
