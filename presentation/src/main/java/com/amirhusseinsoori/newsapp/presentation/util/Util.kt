@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.SearchView
+import com.google.gson.Gson
 
 inline fun EditText.onTextChange(crossinline listener: (String) -> Unit) {
     this.addTextChangedListener(object: TextWatcher {
@@ -39,4 +40,16 @@ inline fun SearchView.onQueryTextSubmitListener(crossinline listener : (String) 
         override fun onQueryTextChange(newText: String?) = true
     })
 
+}
+ fun String.Companion.empty() = ""
+inline fun <reified T> getArgByGson(json: String): T {
+    return Gson().fromJson(
+        json,
+        T::class.java
+    )
+}
+inline fun <reified T> sendArgByGson(input: T): String {
+    return Gson().toJson(
+        input
+    )
 }

@@ -13,14 +13,14 @@ import com.amirhusseinsoori.newsapp.presentation.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentBreakingNewsBinding
 import com.amirhusseinsoori.newsapp.presentation.ui.viewModel.NewsViewModel
 import com.amirhusseinsoori.newsapp.data.network.paging.LoadStateAdapterNews
+import com.amirhusseinsoori.newsapp.presentation.util.sendArgByGson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class BreakingNewsFragment :
-    BaseFragment<FragmentBreakingNewsBinding>(FragmentBreakingNewsBinding::inflate),
+class BreakingNewsFragment : BaseFragment<FragmentBreakingNewsBinding>(FragmentBreakingNewsBinding::inflate),
     NewsAdapter.OnBreakingListener {
 
     private lateinit var adapter: NewsAdapter
@@ -28,20 +28,20 @@ class BreakingNewsFragment :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        adapter = NewsAdapter(this)
         viewModel.setUpEvent()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = NewsAdapter(this)
-        setupCollect()
+        setupRecyclerview()
         binding.buttonRetry.setOnClickListener {
-            setupCollect()
+            viewModel.setUpEvent()
         }
     }
 
 
-    private fun setupCollect() {
+    private fun setupRecyclerview() {
         lifecycleScope.launch(Dispatchers.Main) {
             viewModel._state.collect {
                 binding.rvBreakingNews.setHasFixedSize(true)
@@ -78,7 +78,11 @@ class BreakingNewsFragment :
 
     override fun onBreakingItemClick(item: Article) {
         val action =
-            BreakingNewsFragmentDirections.actionBreakingNewsFragmentToArticleFragment(item)
+            BreakingNewsFragmentDirections.actionBreakingNewsFragmentToArticleFragment(
+                sendArgByGson(
+                    item
+                )
+            )
         findNavController().navigate(action)
     }
 

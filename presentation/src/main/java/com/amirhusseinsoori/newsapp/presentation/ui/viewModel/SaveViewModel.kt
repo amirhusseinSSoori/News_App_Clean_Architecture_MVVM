@@ -17,8 +17,6 @@ class SaveViewModel @Inject constructor(
     private val deleteNewsUseCase: DeleteNewsUseCase,
     private val articleUseCase: ArticleUseCase
 ) : ViewModel() {
-
-
     fun getAllNews() = allNewsUseCase.execute()
 
     fun deleteNewsArticle(article: Article) = viewModelScope.launch(Dispatchers.IO)  {

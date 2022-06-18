@@ -12,4 +12,18 @@ data class Article(
     val url: String,
     val urlToImage: String,
     val id: Long? = null
-) : Serializable
+) : Serializable {
+    companion object {
+        val empty = Article(
+            author = "",
+            content = "",
+            description = "",
+            publishedAt = "",
+            source = Source(id = "", name = ""),
+            title = "",
+            url = "",
+            urlToImage = "",
+            id = 0
+        )
+    }
+}

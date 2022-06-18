@@ -16,6 +16,7 @@ import com.amirhusseinsoori.newsapp.databinding.FragmentSearchNewsBinding
 import com.amirhusseinsoori.newsapp.data.network.paging.LoadStateAdapterNews
 import com.amirhusseinsoori.newsapp.presentation.ui.viewModel.SearchViewModel
 import com.amirhusseinsoori.newsapp.presentation.util.onTextChange
+import com.amirhusseinsoori.newsapp.presentation.util.sendArgByGson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search_news.*
 import kotlinx.coroutines.*
@@ -128,7 +129,8 @@ class SearchNewsFragment :
 
     override fun onBreakingItemClick(item: Article) {
 
-        val action = SearchNewsFragmentDirections.actionSearchNewsFragmentToArticleFragment(item)
+        val action = SearchNewsFragmentDirections.actionSearchNewsFragmentToArticleFragment(
+            sendArgByGson(item))
         findNavController().navigate(action)
     }
 

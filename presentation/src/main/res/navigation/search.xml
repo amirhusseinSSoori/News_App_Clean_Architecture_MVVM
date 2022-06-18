@@ -26,6 +26,6 @@
 
         <argument
             android:name="article"
-            app:argType="com.amirhusseinsoori.domain.entity.Article" />
+            app:argType="string" />
     </fragment>
 </navigation>
