@@ -3,6 +3,7 @@ package com.amirhusseinsoori.data.di
 
 import com.amirhusseinsoori.common.Constants.Companion.BASE_URL
 import com.amirhusseinsoori.data.BuildConfig.DEBUG
+import com.amirhusseinsoori.data.network.AuthInterceptor
 
 import com.amirhusseinsoori.data.network.NewsAPI
 
@@ -32,11 +33,12 @@ object RetrofitModule {
         return loggingInterceptor
     }
 
-    @Singleton
+
     @Provides
-    fun provideOkHttp(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient{
+    fun provideOkHttp(loggingInterceptor: HttpLoggingInterceptor,authInterceptor: AuthInterceptor): OkHttpClient{
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(authInterceptor)
             .readTimeout(500 , TimeUnit.SECONDS)
             .writeTimeout(500 , TimeUnit.SECONDS)
             .connectTimeout(500 , TimeUnit.SECONDS)
