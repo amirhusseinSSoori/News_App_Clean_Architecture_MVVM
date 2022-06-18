@@ -1,44 +1,27 @@
 package com.amirhusseinsoori.newsapp.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.amirhusseinsoori.newsapp.R
-import com.amirhusseinsoori.newsapp.presentation.util.BottomNavManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.amirhusseinsoori.newsapp.databinding.ActivityNewsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NewsActivity : AppCompatActivity() {
-    private var bottomNavManager: BottomNavManager? = null
+    private lateinit var binding: ActivityNewsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_news)
-        setupNavigationManager()
+        binding = ActivityNewsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        val navController: NavController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
+
 
     }
-    private fun setupNavigationManager() {
-        bottomNavManager?.setupNavController() ?: kotlin.run {
-            bottomNavManager = BottomNavManager(
-                fragmentManager = supportFragmentManager,
-                containerId = R.id.nav_host_fragment,
-                bottomNavigationView = findViewById(R.id.bottomNavigationView)
-            )
-        }
-    }
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        bottomNavManager?.onSaveInstanceState(outState)
-    }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        bottomNavManager?.onRestoreInstanceState(savedInstanceState)
-        setupNavigationManager()
-    }
+
 }

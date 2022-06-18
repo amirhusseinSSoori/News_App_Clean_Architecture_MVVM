@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/a.soori/AndroidStudioProjects/News_App_Clean_Architecture_MVVM/presentation/src/main/res/layout/activity_news.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/a.soori/AndroidStudioProjects/News_App_Clean_Architecture_MVVM/presentation/src/main/res/layout/fragment_article.xml" value="0.35280797101449274" />
+        <entry key="..\:/Users/a.soori/AndroidStudioProjects/News_App_Clean_Architecture_MVVM/presentation/src/main/res/layout/fragment_breaking_news.xml" value="0.35280797101449274" />
+        <entry key="..\:/Users/a.soori/AndroidStudioProjects/News_App_Clean_Architecture_MVVM/presentation/src/main/res/layout/fragment_saved_news.xml" value="0.35280797101449274" />
+        <entry key="..\:/Users/a.soori/AndroidStudioProjects/News_App_Clean_Architecture_MVVM/presentation/src/main/res/layout/fragment_search_news.xml" value="0.35280797101449274" />
+        <entry key="..\:/Users/a.soori/AndroidStudioProjects/News_App_Clean_Architecture_MVVM/presentation/src/main/res/layout/item_article_preview.xml" value="0.35280797101449274" />
         <entry key="..\:/Users/pl/AndroidStudioProjects/News_App_Clean_Architecture_MVVMjopjop/presentation/src/main/res/drawable/ic_breaking_news.xml" value="0.3175925925925926" />
         <entry key="..\:/Users/pl/AndroidStudioProjects/News_App_Clean_Architecture_MVVMjopjop/presentation/src/main/res/layout/activity_news.xml" value="0.13451086956521738" />
         <entry key="..\:/Users/pl/AndroidStudioProjects/News_App_Clean_Architecture_MVVMjopjop/presentation/src/main/res/menu/bottom_navigation_menu.xml" value="0.36666666666666664" />
