@@ -1,47 +1,47 @@
 ext {
 
     //----------------- preDefine -----------------
-    kotlin_version ='1.5.30'
-    core_ktx_version = '1.6.0'
-    appcompat_version = '1.3.1'
-    material_version = '1.4.0'
-    constraint_version = '2.1.0'
+    kotlin_version = '1.6.10'
+    core_ktx_version = '1.7.0'
+    appcompat_version = '1.4.2'
+    material_version = '1.6.1'
+    constraint_version = '2.1.4'
     junit_version = '4.13.2'
     junit_test_version = '1.1.2'
     expresso_test_version = '3.3.0'
 
     //----------------- hilt -----------------
-    hilt_version = '2.38.1'
-    hilt_lifecycle_version = '1.0.0-alpha03'
+    hilt_version = '2.42'
 
     //----------------- retrofit -----------------
     retrofit_version = '2.9.0'
 
     //----------------- room -----------------
-    room_version = '2.3.0'
+    room_version = '2.4.2'
 
     //----------------- navigationComponent -----------------
-    nav_version = '2.3.5'
+    nav_version = '2.4.2'
 
     //----------------- paging -----------------
-    paging_version = '3.0.1'
+    paging_version = '3.1.1'
 
     //----------------- coroutines -----------------
-    coroutines_version = '1.5.1'
+    coroutines_version = '1.6.2'
 
     //-----------------  lifecycle -----------------
-    Lifecycle_version = '2.3.0'
+    Lifecycle_version = '2.4.1'
 
     //----------------- activity --------------------
-    activity_version = '1.3.1'
+    activity_version = '1.4.0'
 
     //----------------- fragment ------------------
-    fragment_version = '1.3.6'
+    fragment_version = '1.4.1'
 
     //----------------- utils -----------------
     sdp_version = '1.0.6'
     timber_version = '4.7.1'
     keyboard_version = '2.1.0'
+    Gson_verstion = '2.9.0'
 
     multidex_version = '2.0.1'
     loggingInterceptor_version = '4.8.1'
@@ -64,9 +64,8 @@ ext {
     ]
 
     hilt = [
-            hilt         : "com.google.dagger:hilt-android:$hilt_version",
-            hiltKapt     : "com.google.dagger:hilt-compiler:$hilt_version",
-            hiltLifecycle: "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_version"
+            hilt    : "com.google.dagger:hilt-android:$hilt_version",
+            hiltKapt: "com.google.dagger:hilt-compiler:$hilt_version",
     ]
 
     retrofit = [
@@ -92,17 +91,18 @@ ext {
     ]
 
     coroutines = [
-            coroutines                  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version",
-            coroutinesCore              : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+            coroutines    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version",
+            coroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     ]
 
-    lifecycle =[
+    lifecycle = [
 
             viewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:$Lifecycle_version",
             runtime  : "androidx.lifecycle:lifecycle-runtime-ktx:$Lifecycle_version"
     ]
 
     utils = [
+            gson              : "com.google.code.gson:gson:$Gson_verstion",
             sdp               : "com.intuit.sdp:sdp-android:$sdp_version",
             timber            : "com.jakewharton.timber:timber:$timber_version",
             keyboardEvent     : "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:$keyboard_version",
