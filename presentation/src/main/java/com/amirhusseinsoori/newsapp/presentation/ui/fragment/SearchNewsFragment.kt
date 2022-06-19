@@ -8,19 +8,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.domain.entity.ArticleDomain
 import com.amirhusseinsoori.newsapp.R
 import com.amirhusseinsoori.newsapp.common.BaseFragment
 import com.amirhusseinsoori.newsapp.presentation.adapters.NewsAdapter
 import com.amirhusseinsoori.newsapp.databinding.FragmentSearchNewsBinding
-import com.amirhusseinsoori.newsapp.data.network.paging.LoadStateAdapterNews
+import com.amirhusseinsoori.newsapp.presentation.adapters.LoadStateAdapterNews
 import com.amirhusseinsoori.newsapp.presentation.ui.viewModel.SearchViewModel
 import com.amirhusseinsoori.newsapp.presentation.util.onTextChange
 import com.amirhusseinsoori.newsapp.presentation.util.sendArgByGson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search_news.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 import java.util.*
 import javax.inject.Inject
 
@@ -127,7 +126,7 @@ class SearchNewsFragment :
         }
     }
 
-    override fun onBreakingItemClick(item: Article) {
+    override fun onBreakingItemClick(item: ArticleDomain) {
 
         val action = SearchNewsFragmentDirections.actionSearchNewsFragmentToArticleFragment(
             sendArgByGson(item))

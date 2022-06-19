@@ -1,9 +1,8 @@
 package com.amirhusseinsoori.domain.repository
 
-import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.domain.entity.ArticleDomain
+
 
 interface ArticleNewsRepository {
-
-
-    suspend fun insertArticle(article: Article):Long
+    suspend fun insertArticle(article: ArticleDomain):Long
 }

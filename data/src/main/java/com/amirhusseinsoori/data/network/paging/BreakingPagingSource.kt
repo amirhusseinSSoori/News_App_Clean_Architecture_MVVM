@@ -5,14 +5,11 @@ import androidx.paging.PagingState
 import com.amirhusseinsoori.common.Constants.Companion.BASE_URL
 import com.amirhusseinsoori.common.Constants.Companion.PAGING_START_PAGE
 
-import com.amirhusseinsoori.domain.entity.Article
-import com.amirhusseinsoori.domain.entity.NewsResponse
+import com.amirhusseinsoori.data.network.model.Article
+import com.amirhusseinsoori.data.network.model.NewsResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-
-
-import java.io.IOException
 
 class BreakingPagingSource(
     private val httpClient: HttpClient,

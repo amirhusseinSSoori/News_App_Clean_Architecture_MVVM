@@ -2,11 +2,11 @@ package com.amirhusseinsoori.newsapp.presentation.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.data.network.model.Article
+import com.amirhusseinsoori.domain.entity.ArticleDomain
 import com.amirhusseinsoori.newsapp.databinding.ItemArticlePreviewBinding
 import com.bumptech.glide.Glide
 
@@ -14,11 +14,11 @@ import com.bumptech.glide.Glide
 class SavedNewsAdapter(private val interaction: Interaction? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
+    private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleDomain>() {
 
-        override fun areItemsTheSame(oldItem: Article, newItem: Article) = oldItem.url == newItem.url
+        override fun areItemsTheSame(oldItem: ArticleDomain, newItem: ArticleDomain) = oldItem.url == newItem.url
 
-        override fun areContentsTheSame(oldItem: Article, newItem: Article) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: ArticleDomain, newItem: ArticleDomain) = oldItem == newItem
 
     }
     val differ = AsyncListDiffer(this, DIFF_CALLBACK)
@@ -43,7 +43,7 @@ class SavedNewsAdapter(private val interaction: Interaction? = null) :
         return differ.currentList.size
     }
 
-    fun submitList(list: List<Article>) {
+    fun submitList(list: List<ArticleDomain>) {
         differ.submitList(list)
         notifyDataSetChanged()
     }
@@ -54,7 +54,7 @@ class SavedNewsAdapter(private val interaction: Interaction? = null) :
         private val interaction: Interaction?
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Article) = binding.apply {
+        fun bind(item: ArticleDomain) = binding.apply {
             root.setOnClickListener {
                 interaction?.onItemSelected(item)
             }
@@ -68,6 +68,6 @@ class SavedNewsAdapter(private val interaction: Interaction? = null) :
     }
 
     interface Interaction {
-        fun onItemSelected(item: Article)
+        fun onItemSelected(item: ArticleDomain)
     }
 }

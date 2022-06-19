@@ -1,15 +1,14 @@
 package com.amirhusseinsoori.newsapp.presentation.ui.viewModel
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.data.network.model.Article
+import com.amirhusseinsoori.domain.entity.ArticleDomain
 import com.amirhusseinsoori.domain.usecase.ArticleUseCase
 import com.amirhusseinsoori.newsapp.presentation.util.getArgByGson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.DisposableHandle
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -22,16 +21,16 @@ class ArticleViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val mutableStateArticle = MutableStateFlow<Article>(Article.empty)
+    private val mutableStateArticle = MutableStateFlow<ArticleDomain>(ArticleDomain.empty)
     val state = mutableStateArticle.asStateFlow()
 
     init {
-        getArgByGson<Article>(savedStateHandle.get<String>("article") ?: "").let {
+        getArgByGson<ArticleDomain>(savedStateHandle.get<String>("article") ?: "").let {
             mutableStateArticle.value = it
         }
     }
 
-    fun insertArticle(article: Article) {
+    fun insertArticle(article: ArticleDomain) {
         viewModelScope.launch(Dispatchers.IO) {
             useCase.execute(article)
         }

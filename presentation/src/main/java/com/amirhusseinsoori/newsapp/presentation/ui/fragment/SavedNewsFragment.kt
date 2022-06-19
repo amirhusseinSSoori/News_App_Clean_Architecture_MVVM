@@ -1,14 +1,14 @@
 package com.amirhusseinsoori.newsapp.presentation.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.data.network.model.Article
+import com.amirhusseinsoori.domain.entity.ArticleDomain
 import com.amirhusseinsoori.newsapp.common.BaseFragment
 import com.amirhusseinsoori.newsapp.databinding.FragmentSavedNewsBinding
 import com.amirhusseinsoori.newsapp.presentation.adapters.SavedNewsAdapter
@@ -16,7 +16,6 @@ import com.amirhusseinsoori.newsapp.presentation.ui.viewModel.SaveViewModel
 import com.amirhusseinsoori.newsapp.presentation.util.sendArgByGson
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class SavedNewsFragment:BaseFragment<FragmentSavedNewsBinding>(FragmentSavedNewsBinding::inflate),
@@ -70,7 +69,7 @@ class SavedNewsFragment:BaseFragment<FragmentSavedNewsBinding>(FragmentSavedNews
         }
     }
 
-    override fun onItemSelected(item: Article) {
+    override fun onItemSelected(item: ArticleDomain) {
         val action = SavedNewsFragmentDirections.actionSavedNewsFragmentToArticleFragment(
             sendArgByGson(item))
         findNavController().navigate(action)

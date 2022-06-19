@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.domain.entity.ArticleDomain
 import com.amirhusseinsoori.domain.usecase.BreakingNewUseCase
 
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,14 +16,14 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor( val useCase: BreakingNewUseCase): ViewModel()  {
 
 
-    val state= MutableStateFlow<PagingData<Article>>(PagingData.empty())
+    private val state= MutableStateFlow<PagingData<ArticleDomain>>(PagingData.empty())
     var _state=state.asStateFlow()
 
 
 
     fun setUpEvent(){
         viewModelScope.launch {
-            useCase.execute("us").cachedIn(viewModelScope).collect {
+            useCase.execute("us").cachedIn(viewModelScope).collectLatest {
                 state.value =it
             }
         }

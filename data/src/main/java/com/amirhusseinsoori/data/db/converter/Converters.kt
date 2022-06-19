@@ -2,7 +2,6 @@ package com.amirhusseinsoori.data.db.converter
 
 import androidx.room.TypeConverter
 import com.amirhusseinsoori.data.db.entity.SourceEntity
-import com.amirhusseinsoori.domain.entity.Source
 
 
 class Converters {

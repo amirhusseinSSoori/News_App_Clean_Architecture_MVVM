@@ -1,7 +1,7 @@
 package com.amirhusseinsoori.domain.entity
 
-data class NewsResponse(
-    val articles: List<Article>,
+data class NewsDomain(
+    val articles: List<ArticleDomain>,
     val status: String,
     val totalResults: Int
-    )
+)

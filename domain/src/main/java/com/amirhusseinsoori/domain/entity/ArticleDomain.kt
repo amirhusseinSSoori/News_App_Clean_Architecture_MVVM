@@ -1,24 +1,23 @@
 package com.amirhusseinsoori.domain.entity
 
-
-data class Article(
+data class ArticleDomain(
     val author: String? = null,
     val content: String? = null,
     val description: String? = null,
     val publishedAt: String? = null,
-    val source: Source? = null,
+    val source: SourceDomain? = null,
     val title: String? = null,
     val url: String? = null,
     val urlToImage: String? = null,
     val id: Long? = null
 ) {
     companion object {
-        val empty = Article(
+        val empty = ArticleDomain(
             author = "",
             content = "",
             description = "",
             publishedAt = "",
-            source = Source(id = "", name = ""),
+            source = SourceDomain(id = "", name = ""),
             title = "",
             url = "",
             urlToImage = "",

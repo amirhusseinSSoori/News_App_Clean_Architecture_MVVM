@@ -1,10 +1,6 @@
 package com.amirhusseinsoori.domain.entity
 
-
-
-
-
-data class Source(
+data class SourceDomain(
     val id: String?=null ,
     val name: String?=null
 )

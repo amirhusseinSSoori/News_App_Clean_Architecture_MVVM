@@ -2,7 +2,6 @@ package com.amirhusseinsoori.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.amirhusseinsoori.domain.entity.Source
 
 @Entity(
     tableName = "articlesEntity"

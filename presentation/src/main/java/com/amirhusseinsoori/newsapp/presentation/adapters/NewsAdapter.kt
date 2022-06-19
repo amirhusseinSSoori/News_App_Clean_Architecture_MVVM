@@ -8,20 +8,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 import com.amirhusseinsoori.newsapp.databinding.ItemArticlePreviewBinding
-import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.domain.entity.ArticleDomain
 import com.bumptech.glide.Glide
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerDrawable
 
 class NewsAdapter(private val interaction: OnBreakingListener? = null) :
-    PagingDataAdapter<Article, NewsAdapter.BreakingNewsViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<ArticleDomain, NewsAdapter.BreakingNewsViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleDomain>() {
 
-            override fun areItemsTheSame(oldItem: Article, newItem: Article) = oldItem.url == newItem.url
+            override fun areItemsTheSame(oldItem: ArticleDomain, newItem: ArticleDomain) = oldItem.url == newItem.url
 
-            override fun areContentsTheSame(oldItem: Article, newItem: Article) = oldItem == newItem
+            override fun areContentsTheSame(oldItem: ArticleDomain, newItem: ArticleDomain) = oldItem == newItem
 
         }
     }
@@ -52,7 +52,7 @@ class NewsAdapter(private val interaction: OnBreakingListener? = null) :
             }
         }
 
-        fun bind(item: Article) = binding.apply {
+        fun bind(item: ArticleDomain) = binding.apply {
             var shimmer =Shimmer.ColorHighlightBuilder()
                 .setBaseColor(Color.parseColor("#F3F3F3"))
                 .setBaseAlpha(1F)
@@ -83,7 +83,7 @@ class NewsAdapter(private val interaction: OnBreakingListener? = null) :
 
 
     interface OnBreakingListener {
-        fun onBreakingItemClick(item: Article)
+        fun onBreakingItemClick(item: ArticleDomain)
     }
 
 

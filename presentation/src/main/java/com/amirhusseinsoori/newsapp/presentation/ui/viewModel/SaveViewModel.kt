@@ -2,7 +2,8 @@ package com.amirhusseinsoori.newsapp.presentation.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.data.network.model.Article
+import com.amirhusseinsoori.domain.entity.ArticleDomain
 import com.amirhusseinsoori.domain.usecase.AllNewsUseCase
 import com.amirhusseinsoori.domain.usecase.ArticleUseCase
 import com.amirhusseinsoori.domain.usecase.DeleteNewsUseCase
@@ -19,11 +20,11 @@ class SaveViewModel @Inject constructor(
 ) : ViewModel() {
     fun getAllNews() = allNewsUseCase.execute()
 
-    fun deleteNewsArticle(article: Article) = viewModelScope.launch(Dispatchers.IO)  {
+    fun deleteNewsArticle(article: ArticleDomain) = viewModelScope.launch(Dispatchers.IO)  {
         deleteNewsUseCase.execute(article)
     }
 
-    fun insertArticle(article: Article) {
+    fun insertArticle(article: ArticleDomain) {
         viewModelScope.launch(Dispatchers.IO) {
             articleUseCase.execute(article)
         }

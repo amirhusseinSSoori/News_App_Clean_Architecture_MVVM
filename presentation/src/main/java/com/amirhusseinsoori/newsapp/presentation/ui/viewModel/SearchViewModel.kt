@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.amirhusseinsoori.domain.model.ApiError
 import com.amirhusseinsoori.domain.usecase.SearchNewUseCase
 import com.amirhusseinsoori.domain.usecase.base.UseCaseResponse
-import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.domain.entity.ArticleDomain
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
@@ -25,8 +25,8 @@ class SearchViewModel @Inject constructor(val repository: SearchNewUseCase) : Vi
 
     fun searchNews(query: String) {
         return repository.invoke(viewModelScope, query, object :
-            UseCaseResponse<Flow<PagingData<Article>>> {
-            override fun onSuccess(result: Flow<PagingData<Article>>) {
+            UseCaseResponse<Flow<PagingData<ArticleDomain>>> {
+            override fun onSuccess(result: Flow<PagingData<ArticleDomain>>) {
                 getDetails.value = DetailsNetwork.Success(result)
             }
             override fun onError(apiError: ApiError?) {
@@ -38,7 +38,7 @@ class SearchViewModel @Inject constructor(val repository: SearchNewUseCase) : Vi
 
     sealed class DetailsNetwork() {
         object Empty : DetailsNetwork()
-        class Success(var data: Flow<PagingData<Article>>) : DetailsNetwork()
+        class Success(var data: Flow<PagingData<ArticleDomain>>) : DetailsNetwork()
         class Failed(var message: String?) : DetailsNetwork()
     }
 

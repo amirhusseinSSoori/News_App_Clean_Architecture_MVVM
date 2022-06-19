@@ -1,23 +1,25 @@
 package com.amirhusseinsoori.data.source
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.amirhusseinsoori.data.db.ArticleDao
-import com.amirhusseinsoori.data.mapper.ArticleMapper
-import com.amirhusseinsoori.domain.entity.Article
+import com.amirhusseinsoori.data.db.entity.ArticleEntity
+import com.amirhusseinsoori.data.mapper.mapLocalToArticleDomain
+import com.amirhusseinsoori.data.mapper.mapLocalToListArticleEntity
+import com.amirhusseinsoori.data.network.model.Article
+import com.amirhusseinsoori.domain.entity.ArticleDomain
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class Local @Inject constructor(
-    val db: ArticleDao,
-    private val articleMapper: ArticleMapper
+    val db: ArticleDao
 ) {
+    suspend fun insertArticle(article: ArticleDomain): Long =
+        db.upsert(article.mapLocalToArticleDomain())
 
-    suspend fun insertArticle(article: Article): Long =
-        db.upsert(articleMapper.mapFromEntity(article))
+    suspend fun deleteArticle(article: ArticleDomain) =
+        db.deleteArticle(article.mapLocalToArticleDomain())
 
-    suspend fun deleteArticle(article: Article) = db.deleteArticle(articleMapper.mapFromEntity(article))
-
-    fun getAllArticle(): Flow<List<Article>> = db.getAllArticles().map { articleMapper.mapToEntityList(it) }
+    fun getAllArticle(): Flow<List<ArticleDomain>> =
+        db.getAllArticles().map { it.mapLocalToListArticleEntity() }
 }
