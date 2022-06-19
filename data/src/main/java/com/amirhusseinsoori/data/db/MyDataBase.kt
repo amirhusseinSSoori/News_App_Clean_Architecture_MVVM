@@ -13,6 +13,5 @@ import com.amirhusseinsoori.data.db.entity.ArticleEntity
 @TypeConverters(Converters::class)
 abstract class MyDataBase: RoomDatabase() {
 
-
     abstract fun getArticleDao(): ArticleDao
 }

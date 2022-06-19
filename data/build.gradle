@@ -52,9 +52,7 @@ dependencies {
     implementation hilt.hilt
     kapt hilt.hiltKapt
 
-    //----------------- retrofit -----------------
-    implementation retrofit.retrofit
-    implementation retrofit.converterGson
+
 
     //----------------- util -----------------
     implementation utils.loggingInterceptor
@@ -72,4 +70,11 @@ dependencies {
     implementation room.roomCoroutines
 
 
+    //----------------- ktor -----------------
+    implementation ktor.android
+    implementation ktor.logging
+    implementation ktor.negotiation
+    implementation ktor.json
+    implementation ktor.okhttp
+    implementation ktor.gson
 }

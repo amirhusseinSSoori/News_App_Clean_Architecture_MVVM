@@ -58,9 +58,6 @@ dependencies {
     implementation hilt.hilt
     kapt hilt.hiltKapt
 
-    //----------------- retrofit -----------------
-    implementation retrofit.retrofit
-    implementation retrofit.converterGson
 
     //----------------- navigationComponent -----------------
     implementation navigationComponent.navFragmentKtx
@@ -84,7 +81,6 @@ dependencies {
     implementation room.room
     kapt room.roomKapt
     implementation room.roomCoroutines
-
 
     //----------------- utils -----------------
     implementation utils.sdp

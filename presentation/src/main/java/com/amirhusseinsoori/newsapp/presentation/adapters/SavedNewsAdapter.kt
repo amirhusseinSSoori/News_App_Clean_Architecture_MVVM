@@ -59,7 +59,7 @@ class SavedNewsAdapter(private val interaction: Interaction? = null) :
                 interaction?.onItemSelected(item)
             }
             Glide.with(root).load(item.urlToImage).into(ivArticleImage)
-            tvSource.text = item.source.name
+            tvSource.text = item.source?.name?:""
             tvTitle.text = item.title
             tvDescription.text = item.description
             tvPublishedAt.text = item.publishedAt

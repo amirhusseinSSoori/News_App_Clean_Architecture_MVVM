@@ -2,12 +2,12 @@ package com.amirhusseinsoori.data.source
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.amirhusseinsoori.data.network.NewsAPI
 import com.amirhusseinsoori.data.network.paging.BreakingPagingSource
 import com.amirhusseinsoori.data.network.paging.SearchPagingSource
+import io.ktor.client.*
 import javax.inject.Inject
 
-class Remote @Inject constructor(val api: NewsAPI) {
+class Remote @Inject constructor(private val httpClient: HttpClient) {
 
     fun getArticlesNews(countryCode: String) =
         Pager(
@@ -16,7 +16,7 @@ class Remote @Inject constructor(val api: NewsAPI) {
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { BreakingPagingSource(api, countryCode) }
+            pagingSourceFactory = { BreakingPagingSource(httpClient, countryCode) }
         ).flow
 
 
@@ -27,6 +27,6 @@ class Remote @Inject constructor(val api: NewsAPI) {
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { SearchPagingSource(api, query) }
+            pagingSourceFactory = { SearchPagingSource(httpClient, query) }
         ).flow
 }

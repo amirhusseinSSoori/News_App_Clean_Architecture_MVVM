@@ -13,6 +13,7 @@ import com.amirhusseinsoori.newsapp.common.BaseFragment
 import com.amirhusseinsoori.newsapp.databinding.FragmentSavedNewsBinding
 import com.amirhusseinsoori.newsapp.presentation.adapters.SavedNewsAdapter
 import com.amirhusseinsoori.newsapp.presentation.ui.viewModel.SaveViewModel
+import com.amirhusseinsoori.newsapp.presentation.util.sendArgByGson
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -62,21 +63,16 @@ class SavedNewsFragment:BaseFragment<FragmentSavedNewsBinding>(FragmentSavedNews
 
 
     private fun onCollectSavedNews(){
-
         lifecycleScope.launchWhenStarted {
             viewModel.getAllNews().collect {
                 adapter.submitList(it)
-                Log.e("TAG", "subscribeOnSavedNews: ${it}", )
             }
         }
-
-
-
-
     }
 
     override fun onItemSelected(item: Article) {
-        val action = SavedNewsFragmentDirections.actionSavedNewsFragmentToArticleFragment(item)
+        val action = SavedNewsFragmentDirections.actionSavedNewsFragmentToArticleFragment(
+            sendArgByGson(item))
         findNavController().navigate(action)
     }
 }

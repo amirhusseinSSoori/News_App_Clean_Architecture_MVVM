@@ -38,7 +38,7 @@ class ArticleFragment : BaseFragment<FragmentArticleBinding>(FragmentArticleBind
             viewModel.state.collect(){article->
                 binding.webView.apply {
                     webViewClient = WebViewClient()
-                    loadUrl(article.url)
+                    loadUrl(article.url?:"")
                 }
 
 

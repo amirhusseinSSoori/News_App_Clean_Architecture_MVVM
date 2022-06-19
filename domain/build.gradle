@@ -52,12 +52,6 @@ dependencies {
     implementation hilt.hilt
     kapt hilt.hiltKapt
 
-    //----------------- retrofit -----------------
-    implementation retrofit.retrofit
-    implementation retrofit.converterGson
-
     //----------------- paging -----------------
     implementation paging.paging
-
-
 }

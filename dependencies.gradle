@@ -14,8 +14,9 @@ ext {
     //----------------- hilt -----------------
     hilt_version = '2.42'
 
-    //----------------- retrofit -----------------
-    retrofit_version = '2.9.0'
+    //----------------- ktor -----------------
+    ktor_version = "2.0.0"
+
 
     //----------------- room -----------------
     room_version = '2.4.2'
@@ -69,15 +70,20 @@ ext {
             hiltKapt: "com.google.dagger:hilt-compiler:$hilt_version",
     ]
 
-    retrofit = [
-            retrofit     : "com.squareup.retrofit2:retrofit:$retrofit_version",
-            converterGson: "com.squareup.retrofit2:converter-gson:$retrofit_version",
-    ]
 
     room = [
             room          : "androidx.room:room-runtime:$room_version",
             roomKapt      : "androidx.room:room-compiler:$room_version",
             roomCoroutines: "androidx.room:room-ktx:$room_version"
+    ]
+
+    ktor = [
+            android    : "io.ktor:ktor-client-android:$ktor_version",
+            logging    : "io.ktor:ktor-client-logging:$ktor_version",
+            negotiation: "io.ktor:ktor-client-content-negotiation:$ktor_version",
+            okhttp     : "io.ktor:ktor-client-okhttp:$ktor_version",
+            json       : "io.ktor:ktor-serialization-kotlinx-json:$ktor_version",
+            gson       : "io.ktor:ktor-serialization-gson:$ktor_version"
     ]
 
     navigationComponent = [
