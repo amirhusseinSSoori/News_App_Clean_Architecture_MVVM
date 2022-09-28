@@ -3,7 +3,6 @@ package com.amirhusseinsoori.newsapp.presentation.ui.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import com.amirhusseinsoori.domain.model.ApiError
 import com.amirhusseinsoori.domain.usecase.SearchNewUseCase
 import com.amirhusseinsoori.domain.usecase.base.UseCaseResponse
 import com.amirhusseinsoori.domain.entity.ArticleDomain
@@ -29,8 +28,8 @@ class SearchViewModel @Inject constructor(val repository: SearchNewUseCase) : Vi
             override fun onSuccess(result: Flow<PagingData<ArticleDomain>>) {
                 getDetails.value = DetailsNetwork.Success(result)
             }
-            override fun onError(apiError: ApiError?) {
-                getDetails.value = DetailsNetwork.Failed(apiError!!.message)
+            override fun onError(message: String) {
+                getDetails.value = DetailsNetwork.Failed(message)
             }
 
         })
