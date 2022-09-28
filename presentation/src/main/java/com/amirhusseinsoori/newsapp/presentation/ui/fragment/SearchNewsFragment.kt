@@ -25,17 +25,16 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchNewsFragment :
-    BaseFragment<FragmentSearchNewsBinding>(FragmentSearchNewsBinding::inflate) ,NewsAdapter.OnBreakingListener{
+    BaseFragment<FragmentSearchNewsBinding>(FragmentSearchNewsBinding::inflate),
+    NewsAdapter.OnBreakingListener {
 
 
     private val viewModel: SearchViewModel by viewModels()
+
     lateinit var adapterNews: NewsAdapter
 
     @Inject
     lateinit var timer: Timer
-    private val handlerException = CoroutineExceptionHandler { _, throwable ->
-        Log.e("Error", "show Error Message : ${throwable.message}")
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,54 +48,24 @@ class SearchNewsFragment :
             if (!etSearch.text.trim().toString().isNullOrEmpty()) {
                 timer.schedule(object : TimerTask() {
                     override fun run() {
-
-                        lifecycleScope.launch(Dispatchers.Main + handlerException) {
-                            searchNews(it)
-                            searchOnCollect()
-
+                        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+                            searchOnCollect(it)
                         }
-
-
                     }
                 }, 1000)
             }
         }
 
 
-        searchOnCollect()
+
 
 
     }
 
-
-    fun searchNews(q: String) {
-        viewModel.searchNews(q)
-    }
-
-    private fun searchOnCollect() {
-
-        lifecycleScope.launch(Dispatchers.Main + Job() + handlerException) {
-
-            viewModel.getDetailsCollect.collect { search ->
-
-                when (search) {
-                    is SearchViewModel.DetailsNetwork.Success -> {
-                        search.data.collect {
-
-                            adapterNews.submitData(viewLifecycleOwner.lifecycle, it)
-                            binding.rvSearchNews.adapter = adapterNews
-
-                        }
-                    }
-                    is SearchViewModel.DetailsNetwork.Failed -> {
-                        Log.e("TAG", "searchOnCollect:  ${search.message}")
-
-                    }
-                    else -> Unit
-                }
-
-
-            }
+    private suspend fun searchOnCollect(q: String) {
+        viewModel.searchNews(q).collect { search ->
+            adapterNews.submitData(viewLifecycleOwner.lifecycle, search)
+            binding.rvSearchNews.adapter = adapterNews
         }
         binding.rvSearchNews.adapter = adapterNews.withLoadStateHeaderAndFooter(
             header = LoadStateAdapterNews { adapterNews.retry() },
@@ -129,7 +98,8 @@ class SearchNewsFragment :
     override fun onBreakingItemClick(item: ArticleDomain) {
 
         val action = SearchNewsFragmentDirections.actionSearchNewsFragmentToArticleFragment(
-            sendArgByGson(item))
+            sendArgByGson(item)
+        )
         findNavController().navigate(action)
     }
 

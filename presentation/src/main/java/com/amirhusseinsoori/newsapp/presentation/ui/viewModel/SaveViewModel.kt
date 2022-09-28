@@ -28,6 +28,5 @@ class SaveViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             articleUseCase.execute(article)
         }
-
     }
 }

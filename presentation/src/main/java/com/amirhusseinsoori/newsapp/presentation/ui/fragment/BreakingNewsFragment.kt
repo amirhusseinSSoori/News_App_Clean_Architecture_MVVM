@@ -28,21 +28,22 @@ class BreakingNewsFragment : BaseFragment<FragmentBreakingNewsBinding>(FragmentB
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adapter = NewsAdapter(this)
-        viewModel.setUpEvent()
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerview()
         binding.buttonRetry.setOnClickListener {
-            viewModel.setUpEvent()
+           viewModel.callEventListNews()
         }
+        setupRecyclerview()
+
     }
 
 
     private fun setupRecyclerview() {
         lifecycleScope.launch(Dispatchers.Main) {
-            viewModel._state.collect {
+            viewModel.newsState.collect {
                 binding.rvBreakingNews.setHasFixedSize(true)
                 adapter.submitData(viewLifecycleOwner.lifecycle, it)
                 binding.rvBreakingNews.adapter = adapter.withLoadStateHeaderAndFooter(
@@ -84,9 +85,7 @@ class BreakingNewsFragment : BaseFragment<FragmentBreakingNewsBinding>(FragmentB
             )
         findNavController().navigate(action)
     }
-
-
-}
+    }
 
 
 
