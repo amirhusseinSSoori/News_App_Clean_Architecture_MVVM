@@ -1,7 +1,7 @@
 # [NEWS_APP_CLEAN_ARCHITECTURE_MVVM](https://github.com/amirhusseinSSoori/News_App_Clean_Architecture_MVVM)
 
 **NOTE** 
-this is amazing sample for learning clean Architecture 
+if you need to learn mvvm clone this :)
 
 **Dependencies**
 1. Kotlin
